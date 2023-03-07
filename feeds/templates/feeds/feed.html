@@ -1,0 +1,45 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'feeds.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+<header>
+    <h1 class="title">Detail</h1>
+    <div class="profile">
+        <a href="/account/"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+    </div>
+</header>
+<main>
+    <div class="grid-buttons grid-buttons-detail">
+        <a href="{% url 'feeds' %}" class="crud-button back">
+            <p><</p>
+        </a>
+        <a class="crud-button update">
+            <p>/</p>
+        </a>
+    </div>
+    <div class="card">
+        <div class="feed">
+            <a href="{% url 'user' feed.author.id %}" class="author">
+                {% if feed.author.first_name != "" and feed.author.last_name != "" %}
+                    <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
+                {% else %}
+                    <p class="fulname">Unknown</p>
+                {% endif %}
+                <p class="email">{{ feed.author.email }}</p>
+            </a>
+            <div class="text">
+                <p>{{ feed.text }}</p>
+            </div>
+        </div>
+    </div>
+</main>

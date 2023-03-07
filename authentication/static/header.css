@@ -1,0 +1,33 @@
+header {
+    height: 50px;
+    display: grid;
+    grid-template-rows: 50px;
+    grid-template-columns: 1fr 50px;
+    grid-template-areas:
+        "title profile";
+    background-color: #003f72;
+    color: white;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+header .title {
+    grid-area: title;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+}
+
+.profile {
+    grid-area: profile;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: invert();
+}
+
+
+.profile a {
+    justify-content: center;
+    align-items: center;
+}

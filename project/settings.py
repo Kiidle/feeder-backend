@@ -126,3 +126,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'authentication.User'
+LOGIN_URL = '/login'
+LOGIN_REDIRECT_URL = ''
+
+ALLOWED_HOSTS = ["localhost", "10.0.0.171"]

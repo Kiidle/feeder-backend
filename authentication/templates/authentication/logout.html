@@ -1,0 +1,22 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anmelden</title>
+</head>
+<body>
+<header>
+    <p>Abmeldung</p>
+</header>
+<main>
+    <div class="card">
+        <p class="text-bold">Erfolgreich abgemeldet!</p>
+        <p>Hier <a href="{% url 'login' %}">Anmelden</a></p>
+    </div>
+</main>
+</body>

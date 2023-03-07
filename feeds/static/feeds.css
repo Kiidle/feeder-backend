@@ -1,0 +1,95 @@
+.grid-buttons {
+    display: grid;
+    grid-template-columns: 50px 1fr 50px;
+    grid-template-rows: 50px;
+        margin: 10px 0;
+}
+
+.grid-buttons-home {
+    grid-template-areas:
+        ". . create";
+}
+
+.grid-buttons-detail {
+        grid-template-areas:
+        "back . update";
+}
+
+.crud-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.back {
+    grid-area: back;
+    background-color: #003f72;
+}
+
+.update {
+    grid-area: update;
+    background-color: #003f72;
+}
+
+.create {
+    grid-area: create;
+    background-color: #003f72;
+}
+
+.grid-feeds {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.feed {
+    border-color: #d9d9d9;
+    border-width: 1px;
+    border-style: solid;
+    background-color: white;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr;
+    grid-template-areas:
+        "author"
+        "text";
+    padding: 12px;
+}
+
+.feed a, .feed p {
+    text-decoration: none;
+    color: black;
+}
+
+.feed .author {
+    grid-area: author;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "fulname"
+        "email";
+}
+
+.feed .author .fulname {
+    font-weight: bold;
+    grid-area: fulname;
+    display: flex;
+    align-items: center;
+}
+
+.feed .author .email {
+    color: #888888;
+    grid-area: email;
+    display: flex;
+    align-items: center;
+}
+
+.feed .text {
+    grid-area: text;
+}

@@ -1,0 +1,30 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registrieren</title>
+</head>
+<body>
+<header>
+    <h1 class="title">Registrieren</h1>
+</header>
+<main>
+        <div class="card">
+            <div class="form-container">
+                <form method="POST">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Registrieren</button>
+                </form>
+                <p>Stattdessen <a href="{% url 'login' %}">Anmelden</a></p>
+            </div>
+        </div>
+</main>
+</body>
+</html>

@@ -3,6 +3,7 @@ from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.shortcuts import redirect
 from feeds.models import Feed
+from commentary.models import Commentary
 from authentication.models import User
 
 

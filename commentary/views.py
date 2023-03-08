@@ -1,3 +1,7 @@
-from django.shortcuts import render
+from django.views import generic
 
-# Create your views here.
+from commentary.models import Commentary
+
+class CommentaryView(generic.DetailView):
+    model = Commentary
+    template_name = "commentary/commentary.html"

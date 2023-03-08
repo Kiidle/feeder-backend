@@ -26,22 +26,23 @@
         <a class="crud-button update">
             <p>/</p>
         </a>
-        <a class="crud-button delete">
-            <p>-</p>
-        </a>
+        <form class="delete" action="{% url 'commentary_delete' commentary.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="-" />
+        </form>
     </div>
     <div class="card commentary">
         <div class="answer">
             <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}" class="answer-email">{{ commentary.feed.author.email }}</a></p>
         </div>
-        <div class="author">
+        <a href="{% url 'user' commentary.author.id %}" class="author">
             {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
                 <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
             {% else %}
                 <p class="fulname">Unknown</p>
             {% endif %}
             <p class="email">{{ commentary.author.email }}</p>
-        </div>
+        </a>
         <div class="text">
             <p>{{ commentary.text }}</p>
         </div>

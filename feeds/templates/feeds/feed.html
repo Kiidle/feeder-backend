@@ -26,6 +26,9 @@
         <a class="crud-button update">
             <p>/</p>
         </a>
+        <a class="crud-button delete">
+            <p>-</p>
+        </a>
     </div>
     <div class="card feed">
         <a href="{% url 'user' feed.author.id %}" class="author">
@@ -42,20 +45,26 @@
     </div>
     <div class="grid-buttons">
     </div>
-            {% for commentary in feed.commentaries.all %}
-            <div class="card commentary">
-                <div class="author">
-                <p class="answer">Antwort an <a class="answer-email">{{ feed.author.email }}</a></p>
-                    {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
-                    <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
-                {% else %}
-                    <p class="fulname">Unknown</p>
-                {% endif %}
-                <p class="email">{{ commentary.author.email }}</p>
-                </div>
-                <div class="text">
-                    <p>{{ commentary.text }}</p>
-                </div>
+    <div class="grid-commentaries">
+        {% for commentary in feed.commentaries.all %}
+            <a href={% url 'commentary' commentary.id %}>
+                <div class="card commentary">
+                    <div class="answer">
+                        <p>Antwort an <span class="answer-email">{{ commentary.feed.author.email }}</span> </p>
+                    </div>
+                    <div class="author">
+                        {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
+                                <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
+                            {% else %}
+                                <p class="fulname">Unknown</p>
+                            {% endif %}
+                            <p class="email">{{ commentary.author.email }}</p>
+                    </div>
+                    <div class="text">
+                        <p>{{ commentary.text }}</p>
+                    </div>
             </div>
-            {% endfor %}
+            </a>
+        {% endfor %}
+    </div>
 </main>

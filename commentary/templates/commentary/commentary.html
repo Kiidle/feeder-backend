@@ -1,0 +1,50 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'feeds.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+</head>
+<body>
+<header>
+    <h1 class="title">Detail</h1>
+    <div class="profile">
+        <a href="/account/"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+    </div>
+</header>
+<main>
+    <div class="grid-buttons grid-buttons-detail">
+        <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
+            <p><</p>
+        </a>
+        <a class="crud-button update">
+            <p>/</p>
+        </a>
+        <a class="crud-button delete">
+            <p>-</p>
+        </a>
+    </div>
+    <div class="card commentary">
+        <div class="answer">
+            <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}" class="answer-email">{{ commentary.feed.author.email }}</a></p>
+        </div>
+        <div class="author">
+            {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
+                <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
+            {% else %}
+                <p class="fulname">Unknown</p>
+            {% endif %}
+            <p class="email">{{ commentary.author.email }}</p>
+        </div>
+        <div class="text">
+            <p>{{ commentary.text }}</p>
+        </div>
+    </div>
+</main>
+</body>

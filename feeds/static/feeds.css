@@ -1,18 +1,19 @@
 .grid-buttons {
     display: grid;
-    grid-template-columns: 50px 1fr 50px;
+    grid-gap: 10px;
+    grid-template-columns: 50px 1fr 50px 50px;
     grid-template-rows: 50px;
         margin: 10px 0;
 }
 
 .grid-buttons-home {
     grid-template-areas:
-        ". . create";
+        ". . . create";
 }
 
 .grid-buttons-detail {
         grid-template-areas:
-        "back . update";
+        "back . update delete";
 }
 
 .crud-button {
@@ -29,6 +30,11 @@
 .back {
     grid-area: back;
     background-color: #003f72;
+}
+
+.delete {
+    grid-area: delete;
+    background-color: #890611;
 }
 
 .update {
@@ -57,7 +63,7 @@
     padding: 12px;
 }
 
-.feed a, .feed p {
+.feed a, .feed p, .commentary a, .commentary p {
     text-decoration: none;
     color: black;
 }
@@ -94,22 +100,28 @@
     grid-area: email;
     display: flex;
     align-items: center;
+    color: #727272
 }
 
 .feed .text {
     grid-area: text;
 }
 
+.grid-commentaries {
+    display: grid;
+    grid-gap: 20px;
+}
+
 .commentary {
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr;
-    grid-template-rows: 100px 1fr;
+    grid-template-rows: 25px 50px 1fr;
     grid-template-areas:
+        "answer"
         "author"
         "text";
     padding: 12px;
-    margin: 10px 0;
 }
 
 .commentary .author {
@@ -118,17 +130,20 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
-        "answer"
         "fulname"
         "email";
 }
 
-.commentary .author .answer {
+.commentary .answer {
     grid-area: answer;
     font-size: 0.8rem;
+}
+
+.commentary .answer p {
     color: #727272
 }
 
-.commentary .author .answer .answer-email {
+.commentary .answer .answer-email {
     text-decoration: underline;
+    color: #003f72;
 }

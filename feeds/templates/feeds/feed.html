@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'feeds.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>Detail</title>
 </head>
 <body>
 <header>
-    <h1 class="title">Detail</h1>
+    <h1 class="title">Detail Feed</h1>
     <div class="profile">
         <a href="/account/"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
     </div>
@@ -44,7 +44,7 @@
         </div>
     </div>
     <div class="grid-buttons grid-buttons-home">
-        <p class="crud-button create">+</p>
+        <a href="{% url 'commentary_create' feed.id %}"  class="crud-button create">+</a>
     </div>
     <div class="grid-commentaries">
         {% for commentary in feed.commentaries.all %}

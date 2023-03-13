@@ -23,13 +23,20 @@
     margin: 20px 0;
 }
 
-.card form p input {
-    height: 25px;
+.card form p input, .card form select {
     border-radius: 2px;
     border-width: 1px;
     border-style: solid;
     border-color: #DDDDDD;
     padding: 10px
+}
+
+.card form p select {
+    
+}
+
+.card form .answer p {
+    display: block;
 }
 
 .card form ul {

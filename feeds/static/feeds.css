@@ -45,6 +45,7 @@
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .update {
@@ -146,14 +147,17 @@
 
 .commentary .answer {
     grid-area: answer;
+}
+
+.answer {
     font-size: 0.8rem;
 }
 
-.commentary .answer p {
+.answer p {
     color: #727272
 }
 
-.commentary .answer .answer-email {
+.answer .answer-email {
     text-decoration: underline;
     color: #003f72;
 }

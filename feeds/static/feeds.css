@@ -76,6 +76,7 @@
 .feed a, .feed p, .commentary a, .commentary p {
     text-decoration: none;
     color: black;
+    word-break: break-word;
 }
 
 .feed .commentary-author {

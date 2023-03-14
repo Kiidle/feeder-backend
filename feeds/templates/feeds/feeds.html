@@ -20,9 +20,9 @@
 </header>
 <main>
     <div class="grid-buttons grid-buttons-home">
-        <div class="crud-button create">
+        <a href="{% url 'feed_create' %}" class="crud-button create">
             <p>+</p>
-        </div>
+        </a>
     </div>
     <div class="grid-feeds">
         {% for feed in feeds %}

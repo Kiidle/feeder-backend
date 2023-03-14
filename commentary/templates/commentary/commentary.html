@@ -9,11 +9,11 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'feeds.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <title>Detail</title>
 </head>
 <body>
 <header>
-    <h1 class="title">Detail</h1>
+    <h1 class="title">Detail Kommentar</h1>
     <div class="profile">
         <a href="/account/"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
     </div>
@@ -24,7 +24,7 @@
             <p><</p>
         </a>
         <a class="crud-button update">
-            <p>/</p>
+            <p>/</p>g
         </a>
         <form class="delete" action="{% url 'commentary_delete' commentary.id %}" method="post">
             {% csrf_token %}

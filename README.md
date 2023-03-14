@@ -32,4 +32,5 @@
 
 **Admin**
 - All Moderator Permissions
-- Can change roles and influence other users except administrators
+- Can verify and unverify other users
+- Can give and remove moderator role to other users

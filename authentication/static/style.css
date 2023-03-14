@@ -10,7 +10,7 @@
 }
 
 .card .form-container {
-    padding: 30px 20px;
+    padding: 20px 20px;
 }
 
 .card form {
@@ -42,6 +42,7 @@
 
 .card form .answer p {
     display: block;
+    margin: 0;
 }
 
 .card form ul {

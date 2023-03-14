@@ -45,3 +45,12 @@ class FeedCreateView(generic.CreateView):
     def form_valid(self, form):
         form.instance.author = self.request.user
         return super().form_valid(form)
+
+def feed_delete(request, pk):
+    feed = Feed.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        feed.delete()
+        return redirect('feeds')
+
+    return (request, 'feeds/delete.html', {'feed': feed})

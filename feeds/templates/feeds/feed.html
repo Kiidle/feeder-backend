@@ -26,9 +26,10 @@
         <a class="crud-button update">
             <p>/</p>
         </a>
-        <a class="crud-button delete">
-            <p>-</p>
-        </a>
+        <form class="delete" action="{% url 'feed_delete' feed.id %}" method="post">
+            {% csrf_token %}
+            <input type="submit" value="-" />
+        </form>
     </div>
     <div class="card feed">
         <a href="{% url 'user' feed.author.id %}" class="author">

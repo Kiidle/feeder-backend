@@ -32,4 +32,4 @@
 
 **Admin**
 - All Moderator Permissions
-- Can changes Roles except Admins
+- Can change roles and influence other users except administrators

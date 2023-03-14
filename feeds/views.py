@@ -1,5 +1,3 @@
-from django.contrib.auth import login, authenticate
-from django.contrib.auth.decorators import login_required
 from django.views import generic
 from django.shortcuts import redirect
 from feeds.models import Feed
@@ -16,6 +14,9 @@ class FeedsView(generic.ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+
+
 
         context["feeds"] = super().get_queryset()
 

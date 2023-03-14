@@ -48,3 +48,6 @@ class UsersView(generic.ListView):
 class UserView(generic.DetailView):
     model = User
     template_name = 'authentication/user.html'
+
+def redirectURL(request):
+    return redirect('feeds')

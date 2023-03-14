@@ -12,3 +12,5 @@ class Feed(models.Model):
         on_delete=models.CASCADE,
         related_name="feeds",
     )
+    class Meta:
+        ordering = ['-id']

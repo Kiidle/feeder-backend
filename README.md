@@ -47,8 +47,8 @@
 8. Select "Add Python 3.x to PATH" and click "Install". This option adds Python to the path so you can call Python from the command line.
 9. Wait for the installation to complete.
 10. Check that Python was installed correctly by opening the command prompt and typing ```python --version```. The current version of Python you installed should be displayed.
-Congratulations! You have successfully installed Python 3 on your computer. You are now ready to write and execute Python programs.
 
+Congratulations! You have successfully installed Python 3 on your computer. You are now ready to write and execute Python programs.
 ### Django
 1. Make sure you have Python 3.x installed. If not, please follow the previous guide on how to install Python 3.x.
 2. Open the command prompt or terminal.
@@ -57,3 +57,30 @@ Congratulations! You have successfully installed Python 3 on your computer. You 
 5. Check that Django was installed correctly by typing the command "django-admin --version" in the command prompt or terminal. If Django was installed, the current version of Django should be displayed.
 
 Congratulations! You have successfully installed Django on your computer. You are now ready to create and develop a new Django web application.
+
+### Project
+#### Clone using SSH
+1. Open your command prompt or terminal.
+2. Generate an SSH key by typing the command "ssh-keygen -t rsa" and following the prompts.
+3. Log in to your GitHub account and navigate to the project you want to clone.
+4. Click on the "Clone or download" button and select "Use SSH" in the top right corner of the pop-up.
+5. Copy the SSH URL provided.
+6. In the command prompt or terminal, navigate to the directory where you want to clone the project.
+7. Type the command ```git clone git@github.com:Kiidle/feeder-backend.git``` and press Enter.
+8. Wait for the project to be cloned.
+#### Clone using HTTPS
+1. Open your command prompt or terminal.
+2. Log in to your GitHub account and navigate to the project you want to clone.
+3. Click on the "Clone or download" button and select "Use HTTPS" in the top right corner of the pop-up.
+4. Copy the HTTPS URL provided.
+5. In the command prompt or terminal, navigate to the directory where you want to clone the project.
+6. Type the command ```git clone https://github.com/Kiidle/feeder-backend.git``` and press Enter.
+7. Wait for the project to be cloned.
+#### Run
+1. Open your command prompt or terminal.
+2. Navigate to the directory where the cloned project is located using the "cd" command.
+3. Once you are in the project's directory, you should see a file called "manage.py". This file is responsible for managing the Django project.
+4. Type the command ```python manage.py runserver``` and press Enter.
+5. Wait for the server to start up.
+6. Once the server is up and running, open your web browser and type "http://localhost:8000" in the address bar.
+7. If everything was set up correctly, you should see the project.

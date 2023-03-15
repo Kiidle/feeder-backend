@@ -34,3 +34,17 @@
 - All Moderator Permissions
 - Can verify and unverify other users
 - Can give and remove moderator role to other users
+
+## Setup
+### Python
+1. Besuche die offizielle Python-Website: https://www.python.org/downloads/
+2. Scrolle nach unten zur "Stable Releases" Sektion und wähle die neueste Version von Python3 aus, die für dein Betriebssystem verfügbar ist.
+3. Klicke auf den entsprechenden Download-Link, um das Installationspaket herunterzuladen.
+4. Öffne das heruntergeladene Installationspaket.
+5. Wähle die Option "Install Python 3.x" aus und klicke auf "Weiter".
+6. Wähle das Zielverzeichnis für die Installation aus (der Standardpfad sollte in Ordnung sein) und klicke auf "Weiter".
+7. Wähle die Komponenten aus, die du installieren möchtest. Für den Anfang empfehlen wir, alle Optionen auszuwählen. Klicke auf "Weiter".
+8. Wähle "Add Python 3.x to PATH" aus und klicke auf "Installieren". Diese Option fügt Python zum Pfad hinzu, sodass du Python von der Befehlszeile aus aufrufen kannst.
+9. Warte, bis die Installation abgeschlossen ist.
+10. Überprüfe, ob Python korrekt installiert wurde, indem du die Eingabeaufforderung öffnest und den Befehl "python --version" eingibst. Die aktuelle Version von Python, die du installiert hast, sollte angezeigt werden.
+Herzlichen Glückwunsch! Du hast Python3 erfolgreich auf deinem Computer installiert. Nun bist du bereit, Python-Programme zu schreiben und auszuführen.

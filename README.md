@@ -35,7 +35,7 @@
 - Can verify and unverify other users
 - Can give and remove moderator role to other users
 
-## Setup
+## Setup
 ### Python
 1. Visit the official Python website: https://www.python.org/downloads/
 2. Scroll down to the "Stable Releases" section and select the latest version of Python 3 available for your operating system.
@@ -50,4 +50,10 @@
 Congratulations! You have successfully installed Python 3 on your computer. You are now ready to write and execute Python programs.
 
 ### Django
+1. Make sure you have Python 3.x installed. If not, please follow the previous guide on how to install Python 3.x.
+2. Open the command prompt or terminal.
+3. Type the command ```pip install Django``` and press Enter.
+4. Wait for the installation to complete. The installation process should automatically install all necessary dependencies.
+5. Check that Django was installed correctly by typing the command "django-admin --version" in the command prompt or terminal. If Django was installed, the current version of Django should be displayed.
 
+Congratulations! You have successfully installed Django on your computer. You are now ready to create and develop a new Django web application.

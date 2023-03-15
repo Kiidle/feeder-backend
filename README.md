@@ -37,14 +37,17 @@
 
 ## Setup
 ### Python
-1. Besuche die offizielle Python-Website: https://www.python.org/downloads/
-2. Scrolle nach unten zur "Stable Releases" Sektion und wähle die neueste Version von Python3 aus, die für dein Betriebssystem verfügbar ist.
-3. Klicke auf den entsprechenden Download-Link, um das Installationspaket herunterzuladen.
-4. Öffne das heruntergeladene Installationspaket.
-5. Wähle die Option "Install Python 3.x" aus und klicke auf "Weiter".
-6. Wähle das Zielverzeichnis für die Installation aus (der Standardpfad sollte in Ordnung sein) und klicke auf "Weiter".
-7. Wähle die Komponenten aus, die du installieren möchtest. Für den Anfang empfehlen wir, alle Optionen auszuwählen. Klicke auf "Weiter".
-8. Wähle "Add Python 3.x to PATH" aus und klicke auf "Installieren". Diese Option fügt Python zum Pfad hinzu, sodass du Python von der Befehlszeile aus aufrufen kannst.
-9. Warte, bis die Installation abgeschlossen ist.
-10. Überprüfe, ob Python korrekt installiert wurde, indem du die Eingabeaufforderung öffnest und den Befehl "python --version" eingibst. Die aktuelle Version von Python, die du installiert hast, sollte angezeigt werden.
-Herzlichen Glückwunsch! Du hast Python3 erfolgreich auf deinem Computer installiert. Nun bist du bereit, Python-Programme zu schreiben und auszuführen.
+1. Visit the official Python website: https://www.python.org/downloads/
+2. Scroll down to the "Stable Releases" section and select the latest version of Python 3 available for your operating system.
+3. Click on the appropriate download link to download the installation package.
+4. Open the downloaded installation package.
+5. Select the "Install Python 3.x" option and click "Next".
+6. Choose the destination directory for the installation (the default path should be fine) and click "Next".
+7. Select the components you want to install. For starters, we recommend selecting all options. Click "Next".
+8. Select "Add Python 3.x to PATH" and click "Install". This option adds Python to the path so you can call Python from the command line.
+9. Wait for the installation to complete.
+10. Check that Python was installed correctly by opening the command prompt and typing ```python --version```. The current version of Python you installed should be displayed.
+Congratulations! You have successfully installed Python 3 on your computer. You are now ready to write and execute Python programs.
+
+### Django
+

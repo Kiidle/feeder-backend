@@ -2,6 +2,12 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 from django.utils.translation import gettext_lazy as _
 
+class Role(models.Model):
+    prefix = models.CharField(max_length=15)
+
+    def __str__(self):
+        return self.prefix
+
 class User(AbstractUser):
     email = models.EmailField(_("email address"), unique=True)
 
@@ -9,12 +15,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
     birthdate = models.DateField(null = True)
     verified = models.BooleanField(null = True)
-
-class Role(models.Model):
-    prefix = models.CharField(max_length=15)
-
-    def __str__(self):
-        return self.prefix
+    role = models.ForeignKey(Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True)
 
 class Warn(models.Model):
     reason = models.CharField(max_length=200)

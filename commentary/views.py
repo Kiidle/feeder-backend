@@ -19,7 +19,6 @@ class CommentaryCreateView(generic.CreateView):
     def get_success_url(self):
         return reverse_lazy('feed', kwargs={"pk":self.kwargs.get('feed_id')})
 
-
     def get_current_feed(self, **kwargs):
         return Feed.objects.get(id = self.kwargs.get('feed_id'))
 

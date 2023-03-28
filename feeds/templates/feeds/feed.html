@@ -23,7 +23,7 @@
         <a href="{% url 'feeds' %}" class="crud-button back">
             <p><</p>
         </a>
-        <a class="crud-button update">
+        <a href="{% url 'feed_update' feed.id %}" class="crud-button update">
             <p>/</p>
         </a>
         <form class="delete" action="{% url 'feed_delete' feed.id %}" method="post">

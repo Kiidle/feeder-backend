@@ -32,8 +32,19 @@ class CommentaryCreateView(generic.CreateView):
         form.instance.author = self.request.user
         form.instance.feed = self.get_current_feed(**self.kwargs)
         return super().form_valid(form)
-def commentary_edit(request, pk):
-    return
+
+class CommentaryUpdateView(generic.UpdateView):
+    model = Commentary
+    fields = ['text']
+    template_name = "commentary/update.html"
+
+    def get_success_url(self):
+        return reverse_lazy('commentary', kwargs={'pk': self.kwargs['pk']})
+
+
+    def form_valid(self, form):
+        form.instance.author = self.request.user
+        return super().form_valid(form)
 
 def commentary_delete(request, pk):
     commentary = Commentary.objects.get(pk=pk)

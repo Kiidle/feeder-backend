@@ -23,8 +23,8 @@
         <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
             <p><</p>
         </a>
-        <a class="crud-button update">
-            <p>/</p>g
+        <a href="{% url 'commentary_update' commentary.id %}" class="crud-button update">
+            <p>/</p>
         </a>
         <form class="delete" action="{% url 'commentary_delete' commentary.id %}" method="post">
             {% csrf_token %}

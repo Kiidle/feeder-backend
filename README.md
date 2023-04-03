@@ -36,33 +36,24 @@
 - Can give and remove moderator role to other users
 
 ## Setup
-### pip
-1. First, check if pip is already installed on your system by typing the following command in your terminal or command prompt: ```pip --version```. If pip is already installed, this command willl display the version number. If not, you will see an error message.
-2. If pip is not already installed, you can download the installation script from the official website. Open our web browser and navigate to the following URL: ```https://bootstrap.pypa.io/get-pip.py```
-3. Once the script has download, navigate to the directory where the script was downloading using your terminal or command prompt. For example, if the script was downloaded to your Downloads folder, you would navigate to that directory by typing the following command: ```cd /Downloads```.
-4. Once you are using Python 3, you may need to use the command "python3" instead of "python".
-5. After running this command, pip should be installed on your system. You can verify this by running the following command: ```pip --version```. If pip is installed correctly, this command should display the version number.
 
-You have now installed pup on your system. You can use pup to install Python packages and manage dependencies for your projects.
 
 ### Pyenv
-1. First you need to make surte that you have pip installed. To do this, open the command line and type "pip". If pip is not installed, you will need to install it first.
-2. Install pyenv by typing the following command in the command line: ```curl https://pyenv.run | bash```. This will download the pyenv installation script and install it. If you are using a different operating system than Linux, please consult pyenv's official documentation for instructions on your operation system.
-3. Once pyenv is installed, you can install the desired version of Python. To do this, type the folllowing command in the command line: ```pyenv install 3.x```. This will install Python 3.x on your system.
-4. Additional info: Since feeder-backend works on Python version 3.x. Virtual Environment (venv) is already set up in this project. Just use the following command: ```source venv/bin/activate```
-5. To make sure that you are using the correct Python version, you can type the following command: ````python --version```. If everything is set up correctly, this should display the correct version of python.
-
-That's it! You have now installed the correct Python version. To exit the virtual environment, you can run the deactivate command in the command line.
+1. Install Pyenv via Homebrew by running the following command in your terminal: ```brew install pyenv```
+2. Once Pyenv is installed, you can install the desired version of Python. For Django 3.x, we recommend using Python 3.x To install this version, run the follwing command: ```pyenv install 3.x```
+3. Once Python is installed, you can create a new virtual environment based on Python 3.x. To do this, run the follwing command: ```pyenv virtualenv 3.x venv```.
+4. Now navigate to your Django project directory and activate the newly created virtual environment. To do this, run the follwing commands: ```cd (Your Path)/django/project``` and ```source (your path)/django/project/venv/bin/activte```. This will activate your existing virtual environment.
 
 
 ### Django
-1. Make sure you have Python 3.x installed. If not, please follow the previous guide on how to install Python 3.x.
-2. Open the command prompt or terminal.
-3. Type the command ```pip install Django``` and press Enter.
+1. Make sure you have Pyenv installed with the previous guide. If not, please follow the previous guide on how to install Pyenv.
+2. Acitvate your virtual environment by running the follwing command in your terminal: ```source (your path)/django/project/venv/bin/activate```. This will acitvate your virtual environment and any packages you install will be specific to this environment.
+3. Once your virtual environment is activated, you can use pip to install packages. For example, to install Django, run the follwing command: ```pip install django```. This will install the latest version of Django.
 4. Wait for the installation to complete. The installation process should automatically install all necessary dependencies.
 5. Check that Django was installed correctly by typing the command "django-admin --version" in the command prompt or terminal. If Django was installed, the current version of Django should be displayed.
+6. You can also install packages from a `requirements.txt` file. This is useful when you need to install multiple packages at once. To install the packages listed a `requirements.txt`file, ru the following command: ```pip install -r requirements.txt```. This will install all the packages listed in the `requirements.txt` file. Note that it's important to do this while your virtual environment is activated. Installing packages globally can cause conflicts and make it difficult to manage dependencies.
 
-Congratulations! You have successfully installed Django on your computer. You are now ready to create and develop a new Django web application.
+Congratulations! You have successfully installed Django on your computer in a virtual environment.
 
 ### Project
 #### Clone using SSH

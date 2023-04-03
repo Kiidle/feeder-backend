@@ -15,7 +15,7 @@
 <header>
     <h1 class="title">Home</h1>
     <div class="profile">
-        <a href="/account/"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
     </div>
 </header>
 <main>
@@ -42,6 +42,9 @@
                 </div>
             </a>
         {% endfor %}
+    </div>
+    <div class="">
+
     </div>
 </main>
 <footer>

@@ -1,0 +1,88 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'users.css' %}">
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link rel="stylesheet" href="{% static 'feeds.css' %}">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+</head>
+<body>
+<header>
+    <h1 class="title">Profil</h1>
+    <div class="profile">
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+    </div>
+</header>
+<main>
+    <div>
+        <div class="user">
+            {% if user.first_name != "" and user.last_name %}
+            <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
+            {% else %}
+            <p class="fulname">Unknown</p>
+            {% endif %}
+            <p class="email">{{ user.email }}</p>
+        </div>
+    </div>
+    <div class="grid-tab-commentaries feeds">
+        <a href="{% url 'user' user.id %}" class="tab">
+            Feeds
+        </a>
+        <a class="tab replies">
+            Antworten
+        </a>
+        <a href="{% url 'user_warns' user.id %}" class="tab warns">
+            Verstösse
+        </a>
+        <div class="current">
+        </div>
+    </div>
+<div class="count">
+    {% if user.commentaries.count > 1 or user.commentaries.count < 1 %}
+        <p>{{ user.commentaries.count }} Kommentare</p>
+    {% else %}
+        <p>{{ user.commentaries.count }} Kommentar</p>
+    {% endif %}
+</div>
+<div class="grid-commentaries">
+    {% for commentary in user.commentaries.all %}
+        <a href="{% url 'feed' commentary.feed.id %}">
+            <div class="card feed">
+                <div class="author">
+                    {% if commentary.feed.author.first_name != "" and commentary.feed.author.last_name != "" %}
+                        <p class="fulname">{{ commentary.feed.author.first_name }} {{ commentary.feed.author.last_name }}</p>
+                    {% else %}
+                        <p class="fulname">Unknown</p>
+                    {% endif %}
+                    <p class="email">{{ commentary.feed.author.email }}</p>
+                </div>
+                <div class="text">
+                    <p>{{ commentary.feed.text }}</p>
+                </div>
+            </div>
+            <div class="card commentary">
+                <div class="answer">
+                    <p>Antwort an <span class="answer-email">{{ commentary.feed.author.email }}</span></p>
+                </div>
+                <div class="author">
+                    {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
+                        <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
+                    {% else %}
+                        <p class="fulname">Unknown</p>
+                    {% endif %}
+                    <p class="email">{{ commentary.author.email }}</p>
+                </div>
+                <div class="text">
+                    <p>{{ commentary.text }}</p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+</div>
+</main>

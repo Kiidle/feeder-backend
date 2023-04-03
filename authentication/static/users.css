@@ -1,0 +1,82 @@
+.user {
+margin: 25px 0;
+}
+
+.user .fulname {
+    font-weight: bold;
+    grid-area: fulname;
+    display: flex;
+    align-items: center;
+}
+
+.user .email {
+    grid-area: email;
+    display: flex;
+    align-items: center;
+    color: #727272
+}
+
+.grid-tab {
+    display: grid;
+    grid-gap: 2px 10px;
+    grid-template-rows: 50px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "feeds replies warns"
+        "current . .";
+    margin: 10px 0;
+}
+
+.grid-tab-commentaries {
+    display: grid;
+    grid-gap: 2px 10px;
+    grid-template-rows: 50px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "feeds replies warns"
+        ". current .";
+    margin: 10px 0;
+}
+
+.grid-tab-warns {
+    display: grid;
+    grid-gap: 2px 10px;
+    grid-template-rows: 50px 5px;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+        "feeds replies warns"
+        ". . current";
+    margin: 10px 0;
+}
+
+.tab {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #003f72;
+    font-weight: bold;
+    color: white;
+    border-radius: 2px;
+}
+
+.tab .feeds {
+    grid-area: feeds;
+}
+
+.tab .replies {
+    grid-area: replies;
+}
+
+.tab .warns {
+    grid-area: warns;
+}
+
+.current {
+    grid-area: current;
+    background-color: #003f72;
+    border-radius: 2px;
+}
+
+.count {
+    margin: 10px 0;
+}

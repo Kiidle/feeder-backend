@@ -59,3 +59,27 @@ class UserWarnsView(generic.DetailView):
 
 def redirectURL(request):
     return redirect('feeds')
+
+class UserUpdateView(generic.UpdateView):
+    model = User
+    fields = ['first_name', 'last_name', 'username', 'email', 'birthdate']
+    template_name = "authentication/user_update.html"
+
+    def get_success_url(self):
+        return reverse_lazy('user', args=[self.object.pk])
+
+    def form_valid(self, form):
+        return super().form_valid(form)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['update'] = True
+        return context
+
+def user_delete(request, pk):
+    user = User.objects.get(pk=pk)
+
+    if request.method == 'POST':
+        user.delete()
+        return redirect('feeds')
+    return (request, 'authentication/user_delete.html', {'user': user})

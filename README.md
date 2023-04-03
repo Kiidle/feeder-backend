@@ -47,7 +47,7 @@
 
 ### Django
 1. Make sure you have Pyenv installed with the previous guide. If not, please follow the previous guide on how to install Pyenv.
-2. Acitvate your virtual environment by running the follwing command in your terminal: ```source (your path)/django/project/venv/bin/activate```. This will acitvate your virtual environment and any packages you install will be specific to this environment.
+2. Activate your virtual environment by running the following command in your terminal: ```source (your path)/django/project/venv/bin/activate```. This will acitvate your virtual environment and any packages you install will be specific to this environment.
 3. Once your virtual environment is activated, you can use pip to install packages. For example, to install Django, run the follwing command: ```pip install django```. This will install the latest version of Django.
 4. Wait for the installation to complete. The installation process should automatically install all necessary dependencies.
 5. Check that Django was installed correctly by typing the command "django-admin --version" in the command prompt or terminal. If Django was installed, the current version of Django should be displayed.

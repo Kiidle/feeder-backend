@@ -16,6 +16,12 @@
         "back . update delete";
 }
 
+.grid-buttons-user {
+        grid-template-areas:
+        "back . . update";
+}
+
+
 .crud-button {
     cursor: pointer;
     display: flex;

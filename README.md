@@ -63,7 +63,7 @@ Congratulations! You have successfully installed Django on your computer in a vi
 4. Click on the "Clone or download" button and select "Use SSH" in the top right corner of the pop-up.
 5. Copy the SSH URL provided.
 6. In the command prompt or terminal, navigate to the directory where you want to clone the project.
-7. Type the command ```git clone git@github.com:Kiidle/feeder-backend.git``` and press Enter.
+7. Type the command ```git clone git@github.com:Kiidle/project.feeder.backend.git``` and press Enter.
 8. Wait for the project to be cloned.
 #### Clone using HTTPS
 1. Open your command prompt or terminal.
@@ -71,7 +71,7 @@ Congratulations! You have successfully installed Django on your computer in a vi
 3. Click on the "Clone or download" button and select "Use HTTPS" in the top right corner of the pop-up.
 4. Copy the HTTPS URL provided.
 5. In the command prompt or terminal, navigate to the directory where you want to clone the project.
-6. Type the command ```git clone https://github.com/Kiidle/feeder-backend.git``` and press Enter.
+6. Type the command ```git clone https://github.com/Kiidle/project.feeder.backend.git``` and press Enter.
 7. Wait for the project to be cloned.
 #### Run
 1. Open your command prompt or terminal.

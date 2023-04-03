@@ -163,3 +163,18 @@
     text-decoration: underline;
     color: #003f72;
 }
+
+.grid-warns {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.warn {
+    color: #890611;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 25px 1fr;
+    grid-template-areas:
+        "text";
+    padding: 12px;
+}

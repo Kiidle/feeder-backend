@@ -49,5 +49,13 @@ class UserView(generic.DetailView):
     model = User
     template_name = 'authentication/user.html'
 
+class UserCommentariesView(generic.DetailView):
+    model = User
+    template_name = 'authentication/user_commentaries.html'
+
+class UserWarnsView(generic.DetailView):
+    model = User
+    template_name = 'authentication/user_warns.html'
+
 def redirectURL(request):
     return redirect('feeds')

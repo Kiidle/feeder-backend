@@ -55,3 +55,4 @@ def commentary_delete(request, pk):
         return redirect('feed', pk=feed_id)
 
     return (request, 'commentary/delete.html', {'commentary': commentary})
+

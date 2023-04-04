@@ -56,6 +56,11 @@
             <p>{{ user.warns.count }} Verwarnung</p>
         {% endif %}
     </div>
+    <div class="grid-buttons grid-buttons-home">
+        <a href="{% url 'warn_create' user.id %}" class="crud-button create">
+            <img src="{% static 'svgs/add.svg' %}" height="25px" />
+        </a>
+    </div>
     <div class="grid-warns">
         {% for warn in user.warns.all %}
             <div class="card warn">

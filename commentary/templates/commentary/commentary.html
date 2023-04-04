@@ -21,14 +21,14 @@
 <main>
     <div class="grid-buttons grid-buttons-detail">
         <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
-            <p><</p>
+            <img src="{% static 'svgs/back.svg' %}" height="25px" />
         </a>
         <a href="{% url 'commentary_update' commentary.id %}" class="crud-button update">
-            <p>/</p>
+            <img src="{% static 'svgs/edit.svg' %}" height="25px" />
         </a>
         <form class="delete" action="{% url 'commentary_delete' commentary.id %}" method="post">
             {% csrf_token %}
-            <input type="submit" value="-" />
+            <input type="image" src="{% static 'svgs/delete.svg' %}" value=""/>
         </form>
     </div>
     <div class="card commentary">

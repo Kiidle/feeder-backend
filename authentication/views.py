@@ -5,7 +5,7 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
 from .forms import SignUpForm, LoginForm
-from authentication.models import User
+from authentication.models import User, Warn
 
 def logout_view(request):
     logout(request)
@@ -83,3 +83,23 @@ def user_delete(request, pk):
         user.delete()
         return redirect('feeds')
     return (request, 'authentication/user_delete.html', {'user': user})
+
+class WarnCreateView(generic.CreateView):
+    model = Warn
+    fields = ['reason']
+    template_name = "authentication/warn_create.html"
+
+    def get_success_url(self):
+        return reverse_lazy('user_warns', kwargs={"pk": self.kwargs.get('user_id')})
+
+    def get_current_user(self, **kwargs):
+        return User.objects.get(id = self.kwargs.get('user_id'))
+
+    def get_context_data(self, **kwargs):
+        data = super().get_context_data(**kwargs)
+        user = self.get_current_user(**kwargs)
+        data.update({'user': user})
+        return data
+    def form_valid(self, form):
+        form.instance.user = self.get_current_user(**self.kwargs)
+        return super().form_valid(form)

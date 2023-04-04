@@ -7,11 +7,10 @@ User = get_user_model()
 class FeedTestCase(TestCase):
     def setUp(self):
         feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
-        Feed.objects.create(text="Test feed", author=feedAuthor)
+        self.feed = Feed.objects.create(text="Test feed", author=feedAuthor)
 
     def test_feed_text(self):
-        feed = Feed.objects.get(text="Test feed")
-        self.assertEqual(feed.text, "Test feed", "Feed Text not Equal")
+        self.assertEqual(self.feed.text, "Test feed", "Feed Text not Equal")
 
     def test_feed_create(self):
         initial_count = Feed.objects.count()
@@ -23,12 +22,10 @@ class FeedTestCase(TestCase):
         self.assertEqual(Feed.objects.count(), initial_count + 1)
 
     def test_feed_update(self):
-        feed = Feed.objects.get(text="Test feed")
-        feed.text = "Updated test feed"
-        feed.save()
+        self.feed.text = "Updated test feed"
+        self.feed.save()
 
-        updated_feed = Feed.objects.get(pk=feed.pk)
-        self.assertEqual(updated_feed.text, "Updated test feed", "Feed Text not updated")
+        self.assertEqual(self.feed.text, "Updated test feed", "Feed Text not updated")
 
 
     def test_feed_delete(self):

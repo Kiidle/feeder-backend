@@ -33,6 +33,10 @@
     border-radius: 2px;
 }
 
+.crud-button img {
+    filter: invert();
+}
+
 .back {
     grid-area: back;
     background-color: #003f72;
@@ -41,18 +45,22 @@
 .delete {
     grid-area: delete;
     background-color: #890611;
-    display: flex;
     border-radius: 2px;
 }
 
 .delete input {
-    width: 100%;
+    grid-area: input;
+    width: 24px;
+    height: 24px;
+    padding: 13px;
     border-width: 0;
-    background-color: transparent;
     color: white;
     font-size: 1.2rem;
     font-weight: bold;
     cursor: pointer;
+    display: flex;
+    background-color: transparent;
+    filter: invert();
 }
 
 .update {

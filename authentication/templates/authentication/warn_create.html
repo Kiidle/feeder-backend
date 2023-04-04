@@ -6,32 +6,30 @@
     <meta charset="UTF-8">
     <link rel="stylesheet" href="{% static 'global.css' %}">
     <link rel="stylesheet" href="{% static 'header.css' %}">
+    <link rel="stylesheet" href="{% static 'users.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'feeds.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <title>Home</title>
 </head>
 <body>
 <header>
-    <h1 class="title">Feed Bearbeiten</h1>
+    <h1 class="title">Profil</h1>
     <div class="profile">
         <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
     </div>
 </header>
 <main>
-        <div class="grid-buttons grid-buttons-detail">
-        <a href="{% url 'feed' feed.id %}" class="crud-button back">
+    <div class="grid-buttons grid-buttons-detail">
+        <a href="{% url 'user_warns' user.id %}" class="crud-button back">
             <img src="{% static 'svgs/back.svg' %}" height="25px" />
         </a>
     </div>
     <div class="card">
         <form class="form-container" method="POST">
-            <div>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Posten</button>
-            </div>
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Verwarnen</button>
         </form>
     </div>
 </main>
-</body>

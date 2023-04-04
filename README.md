@@ -40,7 +40,7 @@
 
 ### Pyenv
 1. Install Pyenv via Homebrew by running the following command in your terminal: ```brew install pyenv```
-2. Once Pyenv is installed, you can install the desired version of Python. For Django 4.1.7, we recommend using Python 3.11.2 To install this version, run the follwing command: ```pyenv install 3.11.2```. 
+2. Once Pyenv is installed, you can install the desired version of Python. For Django 4.1.7, we recommend using Python 3.11.2 To install this version, run the following command: ```pyenv install 3.11.2```. 
 (Warning: It's global, not in a virtual environment. Not recommend).
 3. To install virtualenv, you can use the following command if you are using macOS and Homebrew: ```brew install pyenv-virtualenv```. This will install pyenv-virtualenv, which is a plugin for pyenv that provides support for creating and managing virtual environment.
 4. Once Python is installed, you can create a new virtual environment based on Python 3.11.2. To do this, run the following command: ```pyenv virtualenv 3.11.2 venv```.
@@ -50,7 +50,7 @@
 ### Django
 1. Make sure you have Pyenv installed with the previous guide. If not, please follow the previous guide on how to install Pyenv.
 2. Activate your virtual environment by running the following command in your terminal: ```source (your path)/django/project/venv/bin/activate```. This will acitvate your virtual environment and any packages you install will be specific to this environment.
-3. Once your virtual environment is activated, you can use pip to install packages. For example, to install Django, run the follwing command: ```pip install django```. This will install the latest version of Django.
+3. Once your virtual environment is activated, you can use pip to install packages. For example, to install Django, run the following command: ```pip install django```. This will install the latest version of Django.
 4. Wait for the installation to complete. The installation process should automatically install all necessary dependencies.
 5. Check that Django was installed correctly by typing the command "django-admin --version" in the command prompt or terminal. If Django was installed, the current version of Django should be displayed.
 6. You can also install packages from a `requirements.txt` file. This is useful when you need to install multiple packages at once. To install the packages listed a `requirements.txt`file, ru the following command: ```pip install -r requirements.txt```. This will install all the packages listed in the `requirements.txt` file. Note that it's important to do this while your virtual environment is activated. Installing packages globally can cause conflicts and make it difficult to manage dependencies.

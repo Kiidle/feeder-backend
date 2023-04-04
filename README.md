@@ -83,7 +83,7 @@ Congratulations! You have successfully installed Django on your computer in a vi
 5. Wait for the server to start up.
 6. Once the server is up and running, open your web browser and type "http://localhost:8000" in the address bar.
 7. If everything was set up correctly, you should see the project.
-### Test
+#### Test
 1. Open a terminal window and navigate to the Django project's root directory.
 2. Run the following command to execute all the tests in the project: ```python manage.py test```. This will run all the tests in the project, including any tests you've written yourself.
 3. If you want to run tests for a specific app in your project, you can specify the app's name after the `test`command, like this: ```python manage.py test <app_name>```. For example, if you want to run tests for the `feeds`app, you would use the following command: ```python manage.py test feeds```.

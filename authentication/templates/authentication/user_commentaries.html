@@ -22,10 +22,10 @@
 <main>
     <div class="grid-buttons grid-buttons-user">
         <a href="{% url 'feeds' %}" class="crud-button back">
-            <p><</p>
+            <img src="{% static 'svgs/back.svg' %}" height="25px" />
         </a>
         <a href="{% url 'user_update' user.id %}" class="crud-button update">
-            <p>/</p>
+            <img src="{% static 'svgs/settings.svg' %}" height="25px" />
         </a>
     </div>
     <div>

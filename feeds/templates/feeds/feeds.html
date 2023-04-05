@@ -19,33 +19,38 @@
     </div>
 </header>
 <main>
-    <div class="grid-buttons grid-buttons-home">
-        <a href="{% url 'feed_create' %}" class="crud-button create">
-            <img src="{% static 'svgs/add.svg' %}" height="25px" />
-        </a>
-    </div>
-    <div class="grid-feeds">
-        {% for feed in feeds %}
-            <a href={% url 'feed' feed.id %}>
-                <div class="card feed">
-                    <div class="author">
-                        {% if feed.author.first_name != "" and feed.author.last_name != "" %}
-                        <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
-                        {% else %}
-                            <p class="fulname">Unknown</p>
-                        {% endif %}
-                        <p class="email">{{ feed.author.email }}</p>
-                    </div>
-                    <div class="text">
-                        <p>{{ feed.text }}</p>
-                    </div>
-                </div>
+    {% if perms.feeds.add_feed %}
+        <div class="grid-buttons grid-buttons-home">
+            <a href="{% url 'feed_create' %}" class="crud-button create">
+                <img src="{% static 'svgs/add.svg' %}" height="25px" />
             </a>
-        {% endfor %}
+        </div>
+    {% endif %}
+    {% if perms.feeds.view_feed %}
+        <div class="grid-feeds">
+            {% for feed in feeds %}
+                <a href={% url 'feed' feed.id %}>
+                    <div class="card feed">
+                        <div class="author">
+                            {% if feed.author.first_name != "" and feed.author.last_name != "" %}
+                            <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
+                            {% else %}
+                                <p class="fulname">Unknown</p>
+                            {% endif %}
+                            <p class="email">{{ feed.author.email }}</p>
+                        </div>
+                        <div class="text">
+                            <p>{{ feed.text }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
+    {% else %}
+    <div class="no-perm">
+        <p>Zugriff verweigert</p>
     </div>
-    <div class="">
-
-    </div>
+    {% endif %}
 </main>
 <footer>
 

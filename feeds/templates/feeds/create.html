@@ -19,19 +19,25 @@
     </div>
 </header>
 <main>
-    <div class="grid-buttons grid-buttons-detail">
-        <a href="{% url 'feeds' %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-    </div>
-    <div class="card">
-        <form class="form-container" method="POST">
-            <div>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Posten</button>
-            </div>
-        </form>
-    </div>
+    {% if perms.feeds.add_feed %}
+        <div class="grid-buttons grid-buttons-detail">
+            <a href="{% url 'feeds' %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px" />
+            </a>
+        </div>
+        <div class="card">
+            <form class="form-container" method="POST">
+                <div>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Posten</button>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
+    {% endif %}
 </main>
 </body>

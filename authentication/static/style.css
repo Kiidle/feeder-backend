@@ -64,3 +64,10 @@
     border: none;
     width: 100%;
 }
+
+.no-perm {
+    margin: 20px 0;
+    color: red;
+    font-weight: bold;
+    text-align: center;
+}

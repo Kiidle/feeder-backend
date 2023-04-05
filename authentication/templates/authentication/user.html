@@ -20,13 +20,16 @@
     </div>
 </header>
 <main>
+    {% if request.user.id == user.id or perms.authentication.view_user %}
     <div class="grid-buttons grid-buttons-user">
         <a href="{% url 'feeds' %}" class="crud-button back">
             <img src="{% static 'svgs/back.svg' %}" height="25px" />
         </a>
-        <a href="{% url 'user_update' user.id %}" class="crud-button update">
-            <img src="{% static 'svgs/settings.svg' %}" height="25px" />
-        </a>
+        {% if request.user.id == user.id or perms.authentication.change_user %}
+            <a href="{% url 'user_update' user.id %}" class="crud-button update">
+                <img src="{% static 'svgs/settings.svg' %}" height="25px" />
+            </a>
+        {% endif %}
     </div>
     <div>
         <div class="user">
@@ -80,4 +83,5 @@
             {% endif %}
         {% endfor %}
 </main>
+{% endif %}
 </body>

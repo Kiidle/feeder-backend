@@ -16,26 +16,37 @@
 <header>
     <h1 class="title">Profil</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
-    <div class="grid-buttons grid-buttons-detail">
-        <a href="{% url 'user' user.id %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-        <form class="delete" action="{% url 'user_delete' user.id %}" method="POST">
-            {% csrf_token %}
-            <input type="image" src="{% static 'svgs/delete.svg' %}" value=""/>
-        </form>
-    </div>
-    <div class="card">
-        <form class="form-container" method="POST">
-            <div>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Speichern</button>
-            </div>
-        </form>
-    </div>
+    {% if request.user.id == user.id or perms.authentication.change_user %}
+        <div class="grid-buttons grid-buttons-user-update">
+            <a href="{% url 'user' user.id %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
+            </a>
+            <a href="{% url 'logout' %}" class="crud-button logout">
+                <img src="{% static 'svgs/logout.svg' %}" height="25px"/>
+            </a>
+            {% if request.user.id == user.id or perms.authentication.delete_user %}
+                <form class="delete" action="{% url 'user_delete' user.id %}" method="POST">
+                    {% csrf_token %}
+                    <input type="image" src="{% static 'svgs/delete.svg' %}" value=""/>
+                </form>
+            {% endif %}
+        </div>
+        <div class="card">
+            <form class="form-container" method="POST">
+                <div>
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Speichern</button>
+                </div>
+            </form>
+        </div>
+    {% else %}
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
+    {% endif %}
 </main>

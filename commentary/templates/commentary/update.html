@@ -19,6 +19,7 @@
     </div>
 </header>
 <main>
+    {% if request.user.id == commentary.author.id or perms.commentary.change_commentary %}
     <div class="grid-buttons grid-buttons-detail">
         <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
             <img src="{% static 'svgs/back.svg' %}" height="25px" />
@@ -34,4 +35,9 @@
                 <button type="submit">Posten</button>
         </form>
     </div>
+    {% else %}
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
+    {% endif %}
 </main>

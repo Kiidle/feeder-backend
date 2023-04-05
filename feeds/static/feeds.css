@@ -21,6 +21,11 @@
         "back . . update";
 }
 
+.grid-buttons-user-update {
+        grid-template-areas:
+        "back . logout delete";
+}
+
 
 .crud-button {
     cursor: pointer;
@@ -40,6 +45,12 @@
 .back {
     grid-area: back;
     background-color: #003f72;
+}
+
+.logout {
+    grid-area: logout;
+    background-color: #890611;
+    border-radius: 2px;
 }
 
 .delete {

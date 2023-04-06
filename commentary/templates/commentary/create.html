@@ -44,9 +44,15 @@
                     <p>Antwort an <a href="{% url 'feed' feed.id %}" class="answer-email">{{ feed.author.email }}</a>
                     </p>
                 </div>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Posten</button>
+                {% if request.user.warns.count < 3 %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Posten</button>
+                {% else %}
+                    <div class="no-perm">
+                        <p>Dein Konto wurde gesperrt</p>
+                    </div>
+                {% endif %}
             </form>
         </div>
     {% else %}

@@ -16,84 +16,90 @@
 <header>
     <h1 class="title">Profil</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
-    <div class="grid-buttons grid-buttons-user">
-        <a href="{% url 'feeds' %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-        {% if request.user.id == user.id or perms.authentication.change_user %}
-            <a href="{% url 'user_update' user.id %}" class="crud-button update">
-                <img src="{% static 'svgs/settings.svg' %}" height="25px" />
+    {% if request.user.id == user.id or perms.authentication.view_user %}
+        <div class="grid-buttons grid-buttons-user">
+            <a href="{% url 'feeds' %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
-        {% endif %}
-    </div>
-    <div>
-        <div class="user">
-            {% if user.first_name != "" and user.last_name %}
-            <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
-            {% else %}
-            <p class="fulname">Unknown</p>
+            {% if request.user.id == user.id or perms.authentication.change_user %}
+                <a href="{% url 'user_update' user.id %}" class="crud-button update">
+                    <img src="{% static 'svgs/settings.svg' %}" height="25px"/>
+                </a>
             {% endif %}
-            <p class="email">{{ user.email }}</p>
         </div>
-    </div>
+        <div>
+            <div class="user">
+                {% if user.first_name != "" and user.last_name %}
+                    <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                    <p class="fulname">Unknown</p>
+                {% endif %}
+                <p class="email">{{ user.email }}</p>
+            </div>
+        </div>
 
-    <div class="grid-tab-commentaries feeds">
-        <a href="{% url 'user' user.id %}" class="tab">
-            Feeds
-        </a>
-        <a class="tab replies">
-            Antworten
-        </a>
-        <a href="{% url 'user_warns' user.id %}" class="tab warns">
-            Verstösse
-        </a>
-        <div class="current">
+        <div class="grid-tab-commentaries feeds">
+            <a href="{% url 'user' user.id %}" class="tab">
+                Feeds
+            </a>
+            <a class="tab replies">
+                Antworten
+            </a>
+            <a href="{% url 'user_warns' user.id %}" class="tab warns">
+                Verstösse
+            </a>
+            <div class="current">
+            </div>
         </div>
-    </div>
-<div class="count">
-    {% if user.commentaries.count > 1 or user.commentaries.count < 1 %}
-        <p>{{ user.commentaries.count }} Kommentare</p>
+        <div class="count">
+            {% if user.commentaries.count > 1 or user.commentaries.count < 1 %}
+                <p>{{ user.commentaries.count }} Kommentare</p>
+            {% else %}
+                <p>{{ user.commentaries.count }} Kommentar</p>
+            {% endif %}
+        </div>
+        <div class="grid-commentaries">
+            {% for commentary in user.commentaries.all %}
+                <a href="{% url 'feed' commentary.feed.id %}">
+                    <div class="card feed">
+                        <div class="author">
+                            {% if commentary.feed.author.first_name != "" and commentary.feed.author.last_name != "" %}
+                                <p class="fulname">{{ commentary.feed.author.first_name }} {{ commentary.feed.author.last_name }}</p>
+                            {% else %}
+                                <p class="fulname">Unknown</p>
+                            {% endif %}
+                            <p class="email">{{ commentary.feed.author.email }}</p>
+                        </div>
+                        <div class="text">
+                            <p>{{ commentary.feed.text }}</p>
+                        </div>
+                    </div>
+                    <div class="card commentary">
+                        <div class="answer">
+                            <p>Antwort an <span class="answer-email">{{ commentary.feed.author.email }}</span></p>
+                        </div>
+                        <div class="author">
+                            {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
+                                <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
+                            {% else %}
+                                <p class="fulname">Unknown</p>
+                            {% endif %}
+                            <p class="email">{{ commentary.author.email }}</p>
+                        </div>
+                        <div class="text">
+                            <p>{{ commentary.text }}</p>
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        </div>
     {% else %}
-        <p>{{ user.commentaries.count }} Kommentar</p>
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
     {% endif %}
-</div>
-<div class="grid-commentaries">
-    {% for commentary in user.commentaries.all %}
-        <a href="{% url 'feed' commentary.feed.id %}">
-            <div class="card feed">
-                <div class="author">
-                    {% if commentary.feed.author.first_name != "" and commentary.feed.author.last_name != "" %}
-                        <p class="fulname">{{ commentary.feed.author.first_name }} {{ commentary.feed.author.last_name }}</p>
-                    {% else %}
-                        <p class="fulname">Unknown</p>
-                    {% endif %}
-                    <p class="email">{{ commentary.feed.author.email }}</p>
-                </div>
-                <div class="text">
-                    <p>{{ commentary.feed.text }}</p>
-                </div>
-            </div>
-            <div class="card commentary">
-                <div class="answer">
-                    <p>Antwort an <span class="answer-email">{{ commentary.feed.author.email }}</span></p>
-                </div>
-                <div class="author">
-                    {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
-                        <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
-                    {% else %}
-                        <p class="fulname">Unknown</p>
-                    {% endif %}
-                    <p class="email">{{ commentary.author.email }}</p>
-                </div>
-                <div class="text">
-                    <p>{{ commentary.text }}</p>
-                </div>
-            </div>
-        </a>
-    {% endfor %}
-</div>
 </main>

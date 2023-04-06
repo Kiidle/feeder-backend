@@ -1,10 +1,12 @@
 from django import forms
 from django.forms import ModelForm
+
 from authentication.models import User
 
 
 class SignUpForm(ModelForm):
     password = forms.CharField(widget=forms.PasswordInput())
+
     class Meta:
         model = User
         fields = ['first_name', 'last_name', "username", 'birthdate', 'email', 'password']
@@ -31,6 +33,7 @@ class SignUpForm(ModelForm):
         if commit:
             user.save()
         return user
+
 
 class LoginForm(forms.Form):
     email = forms.EmailField()

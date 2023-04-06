@@ -14,25 +14,25 @@
 </head>
 <body>
 <header>
-    <h1 class="title">Profil</h1>
+    <h1 class="title">Verwarnung Erstellen</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if perms.authentication.add_warn %}
-    <div class="grid-buttons grid-buttons-detail">
-        <a href="{% url 'user_warns' user.id %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-    </div>
-    <div class="card">
-        <form class="form-container" method="POST">
-            {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit">Verwarnen</button>
-        </form>
-    </div>
+        <div class="grid-buttons grid-buttons-detail">
+            <a href="{% url 'user_warns' user.id %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
+            </a>
+        </div>
+        <div class="card">
+            <form class="form-container" method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Verwarnen</button>
+            </form>
+        </div>
     {% else %}
         <div clasS="no-perm">
             <p>Zugriff verweigert</p>

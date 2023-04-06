@@ -15,26 +15,33 @@
 <header>
     <h1 class="title">Kommentar Bearbeiten</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if request.user.id == commentary.author.id or perms.commentary.change_commentary %}
-    <div class="grid-buttons grid-buttons-detail">
-        <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-    </div>
-    <div class="card">
-        <form class="form-container" method="POST">
-            <div class="answer">
-                <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}" class="answer-email">{{ commentary.feed.author.email }}</a></p>
-            </div>
-                {% csrf_token %}
-                {{ form.as_p }}
-                <button type="submit">Posten</button>
-        </form>
-    </div>
+        <div class="grid-buttons grid-buttons-detail">
+            <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
+            </a>
+        </div>
+        <div class="card">
+            <form class="form-container" method="POST">
+                <div class="answer">
+                    <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}"
+                                     class="answer-email">{{ commentary.feed.author.email }}</a></p>
+                </div>
+                {% if request.user.warns.count < 3 %}
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <button type="submit">Speichern</button>
+                {% else %}
+                    <div class="no-perm">
+                        <p>Dein Konto wurde gesperrt</p>
+                    </div>
+                {% endif %}
+            </form>
+        </div>
     {% else %}
         <div class="no-perm">
             <p>Zugriff verweigert</p>

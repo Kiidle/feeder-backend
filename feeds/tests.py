@@ -1,8 +1,10 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.test import TestCase
+
 from .models import Feed
 
 User = get_user_model()
+
 
 class FeedTestCase(TestCase):
     def setUp(self):
@@ -26,7 +28,6 @@ class FeedTestCase(TestCase):
         self.feed.save()
 
         self.assertEqual(self.feed.text, "Updated test feed", "Feed Text not updated")
-
 
     def test_feed_delete(self):
         feed = Feed.objects.get(text="Test feed")

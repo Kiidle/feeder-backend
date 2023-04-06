@@ -16,72 +16,76 @@
 <header>
     <h1 class="title">Profil</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if request.user.id == user.id or perms.authentication.view_user %}
-    <div class="grid-buttons grid-buttons-user">
-        <a href="{% url 'feeds' %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px" />
-        </a>
-        {% if request.user.id == user.id or perms.authentication.change_user %}
-            <a href="{% url 'user_update' user.id %}" class="crud-button update">
-                <img src="{% static 'svgs/settings.svg' %}" height="25px" />
+        <div class="grid-buttons grid-buttons-user">
+            <a href="{% url 'feeds' %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
-        {% endif %}
-    </div>
-    <div>
-        <div class="user">
-            {% if user.first_name != "" and user.last_name %}
-            <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
-            {% else %}
-            <p class="fulname">Unknown</p>
+            {% if request.user.id == user.id or perms.authentication.change_user %}
+                <a href="{% url 'user_update' user.id %}" class="crud-button update">
+                    <img src="{% static 'svgs/settings.svg' %}" height="25px"/>
+                </a>
             {% endif %}
-            <p class="email">{{ user.email }}</p>
         </div>
-    </div>
-    <div class="grid-tab feeds">
-        <a class="tab">
-            Feeds
-        </a>
-        <a href="{% url 'user_commentaries' user.id %}" class="tab replies">
-            Antworten
-        </a>
-        <a href="{% url 'user_warns' user.id %}" class="tab warns">
-            Verstösse
-        </a>
-        <div class="current">
+        <div>
+            <div class="user">
+                {% if user.first_name != "" and user.last_name %}
+                    <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                    <p class="fulname">Unknown</p>
+                {% endif %}
+                <p class="email">{{ user.email }}</p>
+            </div>
+        </div>
+        <div class="grid-tab feeds">
+            <a class="tab">
+                Feeds
+            </a>
+            <a href="{% url 'user_commentaries' user.id %}" class="tab replies">
+                Antworten
+            </a>
+            <a href="{% url 'user_warns' user.id %}" class="tab warns">
+                Verstösse
+            </a>
+            <div class="current">
 
+            </div>
         </div>
-    </div>
-    <div class="count">
-        {% if user.feeds.count > 1 or user.feeds.count < 1 %}
-            <p>{{ user.feeds.count }} Feeds</p>
-        {% else %}
-            <p>{{ user.feeds.count }} Feed</p>
-        {% endif %}
-    </div>
-    <div class="grid-feeds">
+        <div class="count">
+            {% if user.feeds.count > 1 or user.feeds.count < 1 %}
+                <p>{{ user.feeds.count }} Feeds</p>
+            {% else %}
+                <p>{{ user.feeds.count }} Feed</p>
+            {% endif %}
+        </div>
+        <div class="grid-feeds">
         {% for feed in user.feeds.all %}
             {% if feed.author.id == user.id %}
-            <a href={% url 'feed' feed.id %}>
-                <div class="card feed">
-                    <div class="author">
-                        {% if feed.author.first_name != "" and feed.author.last_name != "" %}
-                        <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
-                        {% else %}
-                            <p class="fulname">Unknown</p>
-                        {% endif %}
-                        <p class="email">{{ feed.author.email }}</p>
+                <a href={% url 'feed' feed.id %}>
+                    <div class="card feed">
+                        <div class="author">
+                            {% if feed.author.first_name != "" and feed.author.last_name != "" %}
+                                <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
+                            {% else %}
+                                <p class="fulname">Unknown</p>
+                            {% endif %}
+                            <p class="email">{{ feed.author.email }}</p>
+                        </div>
+                        <div class="text">
+                            <p>{{ feed.text }}</p>
+                        </div>
                     </div>
-                    <div class="text">
-                        <p>{{ feed.text }}</p>
-                    </div>
-                </div>
-            </a>
+                </a>
             {% endif %}
         {% endfor %}
+    {% else %}
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
+    {% endif %}
 </main>
-{% endif %}
 </body>

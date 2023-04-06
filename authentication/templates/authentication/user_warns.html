@@ -20,61 +20,73 @@
     </div>
 </header>
 <main>
-    <div class="grid-buttons grid-buttons-user">
-        <a href="{% url 'feeds' %}" class="crud-button back">
-            <img src="{% static 'svgs/back.svg' %}" height="25px"/>
-        </a>
-        {% if request.user.id == user.id or perms.authentication.change_user %}
-            <a href="{% url 'user_update' user.id %}" class="crud-button update">
-                <img src="{% static 'svgs/settings.svg' %}" height="25px"/>
+    {% if request.user.id == user.id or perms.authentication.view_user %}
+        <div class="grid-buttons grid-buttons-user">
+            <a href="{% url 'feeds' %}" class="crud-button back">
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
-        {% endif %}
-    </div>
-    <div class="user">
-        {% if user.first_name != "" and user.last_name %}
-            <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
-        {% else %}
-            <p class="fulname">Unknown</p>
-        {% endif %}
-        <p class="email">{{ user.email }}</p>
-    </div>
-    <div class="grid-tab-warns feeds">
-        <a href="{% url 'user' user.id %}" class="tab">
-            Feeds
-        </a>
-        <a href="{% url 'user_commentaries' user.id %}" class="tab replies">
-            Antworten
-        </a>
-        <a class="tab warns">
-            Verstösse
-        </a>
-        <div class="current">
-        </div>
-    </div>
-    {% if request.user.id == user.id or perms.authentication.view_warn %}
-        <div class="count">
-            {% if user.warns.count > 1 or user.warns.count < 1 %}
-                <p>{{ user.warns.count }} Verwarnungen</p>
-            {% else %}
-                <p>{{ user.warns.count }} Verwarnung</p>
+            {% if request.user.id == user.id or perms.authentication.change_user %}
+                <a href="{% url 'user_update' user.id %}" class="crud-button update">
+                    <img src="{% static 'svgs/settings.svg' %}" height="25px"/>
+                </a>
             {% endif %}
         </div>
-        {% if perms.authentication.add_warn %}
-            <div class="grid-buttons grid-buttons-home">
-                <a href="{% url 'warn_create' user.id %}" class="crud-button create">
-                    <img src="{% static 'svgs/add.svg' %}" height="25px"/>
-                </a>
+        <div class="user">
+            {% if user.first_name != "" and user.last_name %}
+                <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
+            {% else %}
+                <p class="fulname">Unknown</p>
+            {% endif %}
+            <p class="email">{{ user.email }}</p>
+        </div>
+        <div class="grid-tab-warns feeds">
+            <a href="{% url 'user' user.id %}" class="tab">
+                Feeds
+            </a>
+            <a href="{% url 'user_commentaries' user.id %}" class="tab replies">
+                Antworten
+            </a>
+            <a class="tab warns">
+                Verstösse
+            </a>
+            <div class="current">
+            </div>
+        </div>
+        {% if request.user.id == user.id or perms.authentication.view_warn %}
+            <div class="count">
+                {% if user.warns.count > 1 or user.warns.count < 1 %}
+                    <p>{{ user.warns.count }} Verwarnungen</p>
+                {% else %}
+                    <p>{{ user.warns.count }} Verwarnung</p>
+                {% endif %}
+            </div>
+            {% if perms.authentication.add_warn %}
+                <div class="grid-buttons grid-buttons-home">
+                    <a href="{% url 'warn_create' user.id %}" class="crud-button create">
+                        <img src="{% static 'svgs/add.svg' %}" height="25px"/>
+                    </a>
+                </div>
+            {% endif %}
+            <div class="grid-warns">
+                {% for warn in user.warns.all %}
+                    <div class="card warn">
+                        <div class="text">
+                            <p>{{ warn.reason }}</p>
+                        </div>
+                        {% if perms.authentication.delete_warn %}
+                            <form action="{% url 'warn_delete' warn.id %}" class="delete-container" method="post">
+                                {% csrf_token %}
+                                <input type="submit" class="delete" value="x"/>
+                            </form>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+            </div>
+        {% else %}
+            <div class="no-perm">
+                <p>Zugriff verweigert</p>
             </div>
         {% endif %}
-        <div class="grid-warns">
-            {% for warn in user.warns.all %}
-                <div class="card warn">
-                    <div class="text">
-                        <p>{{ warn.reason }}</p>
-                    </div>
-                </div>
-            {% endfor %}
-        </div>
     {% else %}
         <div class="no-perm">
             <p>Zugriff verweigert</p>

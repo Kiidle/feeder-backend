@@ -1,13 +1,17 @@
-from django.test import TestCase
 from django.contrib.auth import get_user_model
+from django.test import TestCase
+
+from authentication.blacklist import is_blacklisted, censorer
 from .models import Feed, Commentary
 
 User = get_user_model()
+
+
 class CommentaryTestCase(TestCase):
     def setUp(self):
-        feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
+        self.feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
         commentaryAuthor = User.objects.create(username="commentary.author@test.test")
-        feed = Feed.objects.create(text="Test feed", author=feedAuthor)
+        feed = Feed.objects.create(text="Test feed", author=self.feedAuthor)
         Commentary.objects.create(text="Test commentary", feed=feed, author=commentaryAuthor)
 
     def test_commentary_text(self):
@@ -39,3 +43,21 @@ class CommentaryTestCase(TestCase):
         commentary.delete()
         with self.assertRaises(Commentary.DoesNotExist):
             Commentary.objects.get(text="Test commentary")
+
+    def test_censored(self):
+        self.assertTrue(is_blacklisted("Arsch du Hure"))
+        self.assertFalse(is_blacklisted("Hallo"))
+
+        self.assertEqual(censorer("Arsch du Hure"), "***** du ****")
+        self.assertEqual(censorer("Hallo"), "Hallo")
+
+    def test_censores_text_on_feed(self):
+        feed = Feed.objects.create(text="Test Feed", author=self.feedAuthor)
+
+        self.assertEqual(self.feedAuthor.warns.count(), 0)
+        commentary = Commentary.objects.create(text="Arsch du Hure", author=self.feedAuthor, feed=feed)
+        self.assertEqual(commentary.text, "***** du ****")
+        self.assertEqual(self.feedAuthor.warns.count(), 1)
+
+        commentary = Commentary.objects.create(text="Hallo", author=self.feedAuthor, feed=feed)
+        self.assertEqual(commentary.text, "Hallo")

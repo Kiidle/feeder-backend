@@ -1,6 +1,7 @@
 from django.db import models
 
-from authentication.models import User
+from authentication.blacklist import is_blacklisted, censorer
+from authentication.models import User, Warn
 
 
 # Create your models here.
@@ -12,5 +13,12 @@ class Feed(models.Model):
         on_delete=models.CASCADE,
         related_name="feeds",
     )
+
+    def save(self, *args, **kwargs):
+        if is_blacklisted(self.text):
+            self.text = censorer(self.text)
+            Warn.objects.create(user=self.author, reason="Wortwahl")
+        super().save(*args, **kwargs)
+
     class Meta:
         ordering = ['-id']

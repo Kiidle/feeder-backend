@@ -15,22 +15,28 @@
 <header>
     <h1 class="title">Feed Erstellen</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if perms.feeds.add_feed %}
         <div class="grid-buttons grid-buttons-detail">
             <a href="{% url 'feeds' %}" class="crud-button back">
-                <img src="{% static 'svgs/back.svg' %}" height="25px" />
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
         </div>
         <div class="card">
             <form class="form-container" method="POST">
                 <div>
-                    {% csrf_token %}
-                    {{ form.as_p }}
-                    <button type="submit">Posten</button>
+                    {% if request.user.warns.count < 3 %}
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit">Posten</button>
+                    {% else %}
+                        <div class="no-perm">
+                            <p>Dein Konto wurde gesperrt</p>
+                        </div>
+                    {% endif %}
                 </div>
             </form>
         </div>

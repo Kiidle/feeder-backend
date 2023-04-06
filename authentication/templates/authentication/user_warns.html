@@ -32,11 +32,20 @@
             {% endif %}
         </div>
         <div class="user">
-            {% if user.first_name != "" and user.last_name %}
-                <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
-            {% else %}
-                <p class="fulname">Unknown</p>
-            {% endif %}
+            <div class="fulname-container">
+                {% if user.first_name != "" and user.last_name %}
+                    <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
+                {% else %}
+                    <p class="fulname">Unknown</p>
+                {% endif %}
+                {% if user %}
+                    {% for group in user.groups.values %}
+                        {% if group.name == "verified" %}
+                            <img class="verify" src="{% static 'svgs/verified.svg' %}" height="15px"/>
+                        {% endif %}
+                    {% endfor %}
+                {% endif %}
+            </div>
             <p class="email">{{ user.email }}</p>
         </div>
         <div class="grid-tab-warns feeds">

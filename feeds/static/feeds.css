@@ -131,17 +131,25 @@
     grid-area: author;
     display: grid;
     grid-template-rows: 1fr 1fr;
-    grid-template-columns: 1fr;
+    grid-template-columns: 1fr 25px;
     grid-template-areas:
-        "fulname"
+        "fulname-container"
         "email";
 }
 
-.author .fulname {
+.verify {
+    grid-area: verify;
+}
+
+.author .fulname-container {
     font-weight: bold;
-    grid-area: fulname;
+    grid-area: fulname-container;
     display: flex;
     align-items: center;
+}
+
+.fulname {
+    margin: 0 5px 0 0;
 }
 
 .author .email {
@@ -178,7 +186,7 @@
     grid-template-rows: 1fr 1fr;
     grid-template-columns: 1fr;
     grid-template-areas:
-        "fulname"
+        "fulname-container"
         "email";
 }
 

@@ -32,11 +32,18 @@
                 <a href={% url 'feed' feed.id %}>
                     <div class="card feed">
                         <div class="author">
-                            {% if feed.author.first_name != "" and feed.author.last_name != "" %}
-                                <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
-                            {% else %}
-                                <p class="fulname">Unknown</p>
-                            {% endif %}
+                            <div class="fulname-container">
+                                {% if feed.author.first_name != "" and feed.author.last_name != "" %}
+                                    <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
+                                {% else %}
+                                    <p class="fulname">Unknown</p>
+                                {% endif %}
+                                {% for group in feed.author.groups.values %}
+                                    {% if group.name == "verified" %}
+                                        <img class="verify" src="{% static 'svgs/verified.svg' %}" height="15px"/>
+                                    {% endif %}
+                                {% endfor %}
+                            </div>
                             <p class="email">{{ feed.author.email }}</p>
                         </div>
                         <div class="text">

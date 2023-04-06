@@ -42,11 +42,20 @@
                                  class="answer-email">{{ commentary.feed.author.email }}</a></p>
             </div>
             <a href="{% url 'user' commentary.author.id %}" class="author">
-                {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
-                    <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
-                {% else %}
-                    <p class="fulname">Unknown</p>
-                {% endif %}
+                <div class="fulname-container">
+                    {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
+                        <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
+                    {% else %}
+                        <p class="fulname">Unknown</p>
+                    {% endif %}
+                    {% if user %}
+                        {% for group in commentary.author.groups.values %}
+                            {% if group.name == "verified" %}
+                                <img class="verify" src="{% static 'svgs/verified.svg' %}" height="15px"/>
+                            {% endif %}
+                        {% endfor %}
+                    {% endif %}
+                </div>
                 <p class="email">{{ commentary.author.email }}</p>
             </a>
             <div class="text">

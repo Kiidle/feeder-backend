@@ -15,15 +15,15 @@
     <h1 class="title">Anmelden</h1>
 </header>
 <main>
-        <div class="card">
-            <div class="form-container">
-                <form method="POST">
-                        {% csrf_token %}
-                        {{ form.as_p }}
-                        <button type="submit">Anmelden</button>
-                    </form>
-                <p>Stattdessen <a href="{% url 'signup' %}">Registrieren</a></p>
-            </div>
+    <div class="card">
+        <div class="form-container">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Anmelden</button>
+            </form>
+            <p>Stattdessen <a href="{% url 'signup' %}">Registrieren</a></p>
         </div>
+    </div>
 </main>
 </body>

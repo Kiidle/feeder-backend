@@ -15,21 +15,21 @@
 <header>
     <h1 class="title">Detail Kommentar</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if request.user.id == commentary.author.id or perms.commentary.view_commentary %}
         <div class="grid-buttons grid-buttons-detail">
             <a href="{% url 'feed' commentary.feed.id %}" class="crud-button back">
-                <img src="{% static 'svgs/back.svg' %}" height="25px" />
+                <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
             {% if request.user.id == commentary.author.id or perms.commentary.change_commentary %}
                 <a href="{% url 'commentary_update' commentary.id %}" class="crud-button update">
-                    <img src="{% static 'svgs/edit.svg' %}" height="25px" />
+                    <img src="{% static 'svgs/edit.svg' %}" height="25px"/>
                 </a>
             {% endif %}
-            {% if request.user.id == commentary.author.id or perms.commentary.delete_commentary %}
+            {% if request.user.id == commentary.author.id or perms.commentary.delete_commentary or commentary.feed.author.id == user.id %}
                 <form class="delete" action="{% url 'commentary_delete' commentary.id %}" method="post">
                     {% csrf_token %}
                     <input type="image" src="{% static 'svgs/delete.svg' %}" value=""/>
@@ -38,7 +38,8 @@
         </div>
         <div class="card commentary">
             <div class="answer">
-                <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}" class="answer-email">{{ commentary.feed.author.email }}</a></p>
+                <p>Antwort an <a href="{% url 'feed' commentary.feed.id %}"
+                                 class="answer-email">{{ commentary.feed.author.email }}</a></p>
             </div>
             <a href="{% url 'user' commentary.author.id %}" class="author">
                 {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}

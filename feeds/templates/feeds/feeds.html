@@ -15,14 +15,14 @@
 <header>
     <h1 class="title">Home</h1>
     <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px" /></a>
+        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
 </header>
 <main>
     {% if perms.feeds.add_feed %}
         <div class="grid-buttons grid-buttons-home">
             <a href="{% url 'feed_create' %}" class="crud-button create">
-                <img src="{% static 'svgs/add.svg' %}" height="25px" />
+                <img src="{% static 'svgs/add.svg' %}" height="25px"/>
             </a>
         </div>
     {% endif %}
@@ -33,7 +33,7 @@
                     <div class="card feed">
                         <div class="author">
                             {% if feed.author.first_name != "" and feed.author.last_name != "" %}
-                            <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
+                                <p class="fulname">{{ feed.author.first_name }} {{ feed.author.last_name }}</p>
                             {% else %}
                                 <p class="fulname">Unknown</p>
                             {% endif %}
@@ -47,9 +47,9 @@
             {% endfor %}
         </div>
     {% else %}
-    <div class="no-perm">
-        <p>Zugriff verweigert</p>
-    </div>
+        <div class="no-perm">
+            <p>Zugriff verweigert</p>
+        </div>
     {% endif %}
 </main>
 <footer>

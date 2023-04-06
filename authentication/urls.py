@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views
 
+from . import views
 from .views import SignUpView, UsersView, UserView, UserCommentariesView, UserWarnsView, UserUpdateView, WarnCreateView
 
 urlpatterns = [
@@ -14,5 +14,6 @@ urlpatterns = [
     path("users/<slug:pk>/update", UserUpdateView.as_view(), name="user_update"),
     path("users/<slug:pk>/delete", views.user_delete, name="user_delete"),
     path("users/<int:user_id>/warns/create", WarnCreateView.as_view(), name="warn_create"),
+    path("warns/<slug:pk>/delete", views.warn_delete, name="warn_delete"),
     path("feeds/", views.redirectURL, name="redirect_feeds"),
 ]

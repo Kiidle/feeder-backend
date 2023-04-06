@@ -3,7 +3,7 @@
     grid-gap: 10px;
     grid-template-columns: 50px 1fr 50px 50px;
     grid-template-rows: 50px;
-        margin: 10px 0;
+    margin: 10px 0;
 }
 
 .grid-buttons-home {
@@ -12,17 +12,17 @@
 }
 
 .grid-buttons-detail {
-        grid-template-areas:
+    grid-template-areas:
         "back . update delete";
 }
 
 .grid-buttons-user {
-        grid-template-areas:
+    grid-template-areas:
         "back . . update";
 }
 
 .grid-buttons-user-update {
-        grid-template-areas:
+    grid-template-areas:
         "back . logout delete";
 }
 
@@ -51,6 +51,16 @@
     grid-area: logout;
     background-color: #890611;
     border-radius: 2px;
+}
+
+.warn form .delete {
+    width: 100%;
+    border: none;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+
 }
 
 .delete {
@@ -197,9 +207,15 @@
 .warn {
     color: #890611;
     display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 25px 1fr;
+    grid-template-columns: 1fr 25px;
+    grid-template-rows: 25px;
     grid-template-areas:
-        "text";
+        "text delete";
     padding: 12px;
+    word-break: break-word;
+}
+
+.warn form {
+    grid-area: delete;
+    display: flex;
 }

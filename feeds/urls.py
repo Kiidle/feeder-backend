@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
 from django.urls import path
-from .views import FeedsView, FeedView, FeedCreateView, FeedUpdateView
+
 from . import views
+from .views import FeedsView, FeedView, FeedCreateView, FeedUpdateView
 
 urlpatterns = [
     path("", login_required(FeedsView.as_view()), name="feeds"),

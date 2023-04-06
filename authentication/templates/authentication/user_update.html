@@ -14,7 +14,7 @@
 </head>
 <body>
 <header>
-    <h1 class="title">Profil</h1>
+    <h1 class="title">Profil Bearbeiten</h1>
     <div class="profile">
         <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
     </div>
@@ -25,9 +25,11 @@
             <a href="{% url 'user' user.id %}" class="crud-button back">
                 <img src="{% static 'svgs/back.svg' %}" height="25px"/>
             </a>
-            <a href="{% url 'logout' %}" class="crud-button logout">
-                <img src="{% static 'svgs/logout.svg' %}" height="25px"/>
-            </a>
+            {% if request.user.id == user.id %}
+                <a href="{% url 'logout' %}" class="crud-button logout">
+                    <img src="{% static 'svgs/logout.svg' %}" height="25px"/>
+                </a>
+            {% endif %}
             {% if request.user.id == user.id or perms.authentication.delete_user %}
                 <form class="delete" action="{% url 'user_delete' user.id %}" method="POST">
                     {% csrf_token %}

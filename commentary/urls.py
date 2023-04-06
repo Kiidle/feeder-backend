@@ -1,7 +1,7 @@
 from django.urls import path
 
-from .views import CommentaryView, CommentaryCreateView, CommentaryUpdateView
 from . import views
+from .views import CommentaryView, CommentaryCreateView, CommentaryUpdateView
 
 urlpatterns = [
     path("feeds/<int:feed_id>/commentaries/create", CommentaryCreateView.as_view(), name="commentary_create"),

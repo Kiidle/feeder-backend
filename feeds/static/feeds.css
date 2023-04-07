@@ -1,29 +1,29 @@
 .grid-buttons {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 50px 1fr 50px 50px;
+    grid-template-columns: 50px 1fr 50px 50px 50px;
     grid-template-rows: 50px;
     margin: 10px 0;
 }
 
 .grid-buttons-home {
     grid-template-areas:
-        ". . . create";
+        ". . . . create";
 }
 
 .grid-buttons-detail {
     grid-template-areas:
-        "back . update delete";
+        "back . . update delete";
 }
 
 .grid-buttons-user {
     grid-template-areas:
-        "back . . update";
+        "back . . . update";
 }
 
 .grid-buttons-user-update {
     grid-template-areas:
-        "back . logout delete";
+        "back . tree logout delete";
 }
 
 
@@ -40,6 +40,11 @@
 
 .crud-button img {
     filter: invert();
+}
+
+.tree {
+    grid-area: tree;
+    background-color: #003f72;
 }
 
 .back {
@@ -60,6 +65,7 @@
     color: white;
     font-weight: bold;
     cursor: pointer;
+    padding: 0;
 
 }
 

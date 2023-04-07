@@ -1,13 +1,53 @@
 from django.contrib import messages
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required
-from django.http import JsonResponse
+from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
+from django.contrib.auth.models import Group, Permission
+from django.contrib.contenttypes.models import ContentType
+from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
 from authentication.models import User, Warn
 from .forms import SignUpForm, LoginForm
+
+group, created = Group.objects.get_or_create(name='verified')
+
+def can_verify(user):
+    return user.groups.filter(name__in=['moderator', 'administrator']).exists()
+
+def can_assignmod(user):
+    return user.groups.filter(name__in=['administrator']).exists()
+
+@login_required
+@user_passes_test(can_verify, login_url='/feeds/')
+def verify_user(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+
+    if request.method == 'POST':
+        verified_group = Group.objects.get(name='verified')
+        if user.groups.filter(name='verified').exists():
+            user.groups.remove(verified_group)
+        else:
+            user.groups.add(verified_group)
+        return redirect('user_group', user.id)
+    else:
+        return render(request, 'authentication/user_group_verify.html', {'user': user})
+
+@login_required
+@user_passes_test(can_assignmod, login_url='/feeds/')
+def assignmod(request, user_id):
+    user = get_object_or_404(User, id=user_id)
+    if request.method == 'POST':
+        moderator_group = Group.objects.get(name='moderator')
+        if user.groups.filter(name='moderator').exists():
+            user.groups.remove(moderator_group)
+        else:
+            user.groups.add(moderator_group)
+        return redirect('user_group', user.id)
+    else:
+        return render(request, 'authentication/user_group_moderator.html', {'user': user})
+
 
 
 def logout_view(request):
@@ -129,3 +169,8 @@ def warn_delete(request, pk):
         warn.delete()
         return redirect('user_warns', pk=user_id)
     return JsonResponse({'success': False})
+
+
+class UserUpdateGroupDetail(generic.DetailView):
+    model = User
+    template_name = 'authentication/user_group.html'

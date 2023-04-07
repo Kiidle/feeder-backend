@@ -1,3 +1,32 @@
+.grid-group {
+    display: grid;
+    grid-gap: 10px;
+}
+
+.group-card {
+    padding: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 50px;
+    grid-template-areas:
+        "content"
+        "button";
+    grid-gap: 10px;
+}
+
+.group-card .button {
+    grid-area: button;
+    display: flex;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    border-radius: 2px;
+    background-color: #003f72;
+    color: white;
+    font-weight: bold;
+}
+
 .user {
     margin: 25px 0;
 }

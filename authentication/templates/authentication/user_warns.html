@@ -69,7 +69,7 @@
                     <p>{{ user.warns.count }} Verwarnung</p>
                 {% endif %}
             </div>
-            {% if perms.authentication.add_warn %}
+            {% if perms.authentication.add_warn and request.user.id != user.id %}
                 <div class="grid-buttons grid-buttons-home">
                     <a href="{% url 'warn_create' user.id %}" class="crud-button create">
                         <img src="{% static 'svgs/add.svg' %}" height="25px"/>

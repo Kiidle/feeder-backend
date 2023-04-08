@@ -36,6 +36,11 @@
                     <input type="image" src="{% static 'svgs/delete.svg' %}" value=""/>
                 </form>
             {% endif %}
+            {% if perms.authentication.change_user %}
+                <a href="{% url 'user_group' user.id %}" class="crud-button tree">
+                <img src="{% static 'svgs/tree.svg' %}" height="25px"/>
+                </a>
+            {% endif %}
         </div>
         <div class="card">
             <form class="form-container" method="POST">

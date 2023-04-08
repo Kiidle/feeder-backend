@@ -23,13 +23,25 @@
     margin: 20px 0;
 }
 
-.card form p input, .card form select, .card form textarea {
+.card form p input, .card form select, .card form textarea, .card form input {
     border-radius: 2px;
     border-width: 1px;
     border-style: solid;
     border-color: #DDDDDD;
     padding: 10px;
     resize: none;
+}
+
+.card form label {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+}
+
+.card form .checkbox {
+    height: 25px;
+    width: 25px;
+    margin: 0 10px 0 0;
 }
 
 .card form textarea {

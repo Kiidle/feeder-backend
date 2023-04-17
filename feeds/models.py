@@ -1,7 +1,10 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 
 from authentication.blacklist import is_blacklisted, censorer
-from authentication.models import User, Warn
+from authentication.models import Warn
+
+User = get_user_model()
 
 
 # Create your models here.

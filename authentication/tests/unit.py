@@ -1,6 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from .models import User, Warn
+from authentication.models import Warn
+
+User = get_user_model()
 
 
 # Create your tests here.

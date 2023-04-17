@@ -2,7 +2,7 @@ from django.contrib.auth import get_user_model
 from django.test import TestCase
 
 from authentication.blacklist import is_blacklisted, censorer
-from .models import Feed, Commentary
+from commentary.models import Feed, Commentary
 
 User = get_user_model()
 
@@ -51,7 +51,7 @@ class CommentaryTestCase(TestCase):
         self.assertEqual(censorer("Arsch du Hure"), "***** du ****")
         self.assertEqual(censorer("Hallo"), "Hallo")
 
-    def test_censores_text_on_feed(self):
+    def test_censores_text_on_commentary(self):
         feed = Feed.objects.create(text="Test Feed", author=self.feedAuthor)
 
         self.assertEqual(self.feedAuthor.warns.count(), 0)

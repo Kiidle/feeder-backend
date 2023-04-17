@@ -6,9 +6,6 @@ from authentication.models import Warn
 
 User = get_user_model()
 
-
-# Create your models here.
-
 class Feed(models.Model):
     text = models.TextField(max_length=200)
     author = models.ForeignKey(

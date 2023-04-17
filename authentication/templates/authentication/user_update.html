@@ -38,7 +38,7 @@
             {% endif %}
             {% if perms.authentication.change_user %}
                 <a href="{% url 'user_group' user.id %}" class="crud-button tree">
-                <img src="{% static 'svgs/tree.svg' %}" height="25px"/>
+                    <img src="{% static 'svgs/tree.svg' %}" height="25px"/>
                 </a>
             {% endif %}
         </div>

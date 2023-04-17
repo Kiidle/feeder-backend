@@ -1,23 +1,28 @@
 from django.contrib import messages
+from django.contrib.auth import get_user_model
 from django.contrib.auth import login, authenticate, logout
-from django.contrib.auth.decorators import login_required, permission_required, user_passes_test
-from django.contrib.auth.models import Group, Permission
-from django.contrib.contenttypes.models import ContentType
-from django.http import JsonResponse, HttpResponseBadRequest, HttpResponse
+from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.models import Group
+from django.http import JsonResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views import generic
 
-from authentication.models import User, Warn
+from authentication.models import Warn
 from .forms import SignUpForm, LoginForm
 
+User = get_user_model()
+
 group, created = Group.objects.get_or_create(name='verified')
+
 
 def can_verify(user):
     return user.groups.filter(name__in=['moderator', 'administrator']).exists()
 
+
 def can_assignmod(user):
     return user.groups.filter(name__in=['administrator']).exists()
+
 
 @login_required
 @user_passes_test(can_verify, login_url='/feeds/')
@@ -34,6 +39,7 @@ def verify_user(request, user_id):
     else:
         return render(request, 'authentication/user_group_verify.html', {'user': user})
 
+
 @login_required
 @user_passes_test(can_assignmod, login_url='/feeds/')
 def assignmod(request, user_id):
@@ -49,7 +55,6 @@ def assignmod(request, user_id):
         return render(request, 'authentication/user_group_moderator.html', {'user': user})
 
 
-
 def logout_view(request):
     logout(request)
 
@@ -58,6 +63,12 @@ class SignUpView(generic.CreateView):
     form_class = SignUpForm
     success_url = reverse_lazy("login")
     template_name = "authentication/signup.html"
+
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        group = Group.objects.get(name='default')
+        self.object.groups.add(group)
+        return response
 
 
 @login_required

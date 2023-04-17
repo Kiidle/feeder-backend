@@ -1,5 +1,6 @@
 from django.contrib.auth.models import Permission, Group
 
+
 def create_verify_permission_and_group():
     # create verify_user permission
     permission, created = Permission.objects.get_or_create(
@@ -13,6 +14,7 @@ def create_verify_permission_and_group():
 
     # add the permission to the verified group
     group.permissions.add(permission)
+
 
 def create_assignmod_permission_and_group():
     # create assign_moderator permission

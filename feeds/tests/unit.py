@@ -1,15 +1,16 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from .models import Feed
+from authentication.blacklist import is_blacklisted, censorer
+from feeds.models import Feed
 
 User = get_user_model()
 
 
 class FeedTestCase(TestCase):
     def setUp(self):
-        feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
-        self.feed = Feed.objects.create(text="Test feed", author=feedAuthor)
+        self.feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
+        self.feed = Feed.objects.create(text="Test feed", author=self.feedAuthor)
 
     def test_feed_text(self):
         self.assertEqual(self.feed.text, "Test feed", "Feed Text not Equal")
@@ -18,8 +19,7 @@ class FeedTestCase(TestCase):
         initial_count = Feed.objects.count()
         self.assertEqual(Feed.objects.count(), initial_count)
 
-        feedAuthor = User.objects.create(username="feed.creator", email="feed.creator@test.test")
-        Feed.objects.create(text="Test feed", author=feedAuthor)
+        Feed.objects.create(text="Test feed", author=self.feedAuthor)
 
         self.assertEqual(Feed.objects.count(), initial_count + 1)
 
@@ -34,3 +34,10 @@ class FeedTestCase(TestCase):
         feed.delete()
         with self.assertRaises(Feed.DoesNotExist):
             Feed.objects.get(text="Test feed")
+
+    def test_censored(self):
+        self.assertTrue(is_blacklisted("Arsch du Hure"))
+        self.assertFalse(is_blacklisted("Hallo"))
+
+        self.assertEqual(censorer("Arsch du Hure"), "***** du ****")
+        self.assertEqual(censorer("Hallo"), "Hallo")

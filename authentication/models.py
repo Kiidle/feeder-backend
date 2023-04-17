@@ -11,11 +11,14 @@ class Role(models.Model):
 
 
 class User(AbstractUser):
-    email = models.EmailField(_("email address"), unique=True)
+    first_name = models.CharField(max_length=100, verbose_name="Vorname")
+    last_name = models.CharField(max_length=100, verbose_name="Nachname")
+    username = models.EmailField(unique=True, verbose_name="Benutzername")
+    email = models.EmailField(unique=True, verbose_name="E-Mail Adresse")
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
-    birthdate = models.DateField(null=True)
+    birthdate = models.DateField(null=True, verbose_name="Geburtsdatum")
     verified = models.BooleanField(null=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True)
 

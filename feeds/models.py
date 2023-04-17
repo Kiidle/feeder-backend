@@ -1,10 +1,11 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from authentication.blacklist import is_blacklisted, censorer
+from authentication.blacklist import censorer, is_blacklisted
 from authentication.models import Warn
 
 User = get_user_model()
+
 
 class Feed(models.Model):
     text = models.TextField(max_length=200)
@@ -21,4 +22,4 @@ class Feed(models.Model):
         super().save(*args, **kwargs)
 
     class Meta:
-        ordering = ['-id']
+        ordering = ["-id"]

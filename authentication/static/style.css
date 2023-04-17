@@ -83,3 +83,25 @@
     font-weight: bold;
     text-align: center;
 }
+
+@media screen and (min-width: 520px) {
+    main > .card {
+        width: 500px;
+        margin: 0 auto;
+    }
+
+    main > .feed {
+        width: 474px;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    main > .card {
+        width: 750px;
+        margin: 0 auto;
+    }
+
+    main > .feed {
+        width: 734px;
+    }
+}

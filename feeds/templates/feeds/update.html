@@ -13,9 +13,11 @@
 </head>
 <body>
 <header>
-    <h1 class="title">Feed Bearbeiten</h1>
-    <div class="profile">
-        <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
+    <div class="grid-header">
+        <h1 class="title">Feed Bearbeiten</h1>
+        <div class="profile">
+            <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
+        </div>
     </div>
 </header>
 <main>

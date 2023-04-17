@@ -5,12 +5,12 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('feeds', '0001_initial'),
+        ("feeds", "0001_initial"),
     ]
 
     operations = [
         migrations.AlterModelOptions(
-            name='feed',
-            options={'ordering': ['-id']},
+            name="feed",
+            options={"ordering": ["-id"]},
         ),
     ]

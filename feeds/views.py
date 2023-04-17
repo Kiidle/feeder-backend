@@ -40,11 +40,11 @@ def feed_delete():
 
 class FeedCreateView(generic.CreateView):
     model = Feed
-    fields = ['text']
+    fields = ["text"]
     template_name = "feeds/create.html"
 
     def get_success_url(self):
-        return reverse_lazy('feeds')
+        return reverse_lazy("feeds")
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -59,11 +59,11 @@ class FeedCreateView(generic.CreateView):
 
 class FeedUpdateView(generic.UpdateView):
     model = Feed
-    fields = ['text']
+    fields = ["text"]
     template_name = "feeds/update.html"
 
     def get_success_url(self):
-        return reverse_lazy('feed', args=[self.object.pk])
+        return reverse_lazy("feed", args=[self.object.pk])
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -71,15 +71,15 @@ class FeedUpdateView(generic.UpdateView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
-        context['update'] = True
+        context["update"] = True
         return context
 
 
 def feed_delete(request, pk):
     feed = Feed.objects.get(pk=pk)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         feed.delete()
-        return redirect('feeds')
+        return redirect("feeds")
 
-    return (request, 'feeds/delete.html', {'feed': feed})
+    return (request, "feeds/delete.html", {"feed": feed})

@@ -1,14 +1,17 @@
 header {
     height: 50px;
+    background-color: #003f72;
+    color: white;
+    font-weight: bold;
+    padding: 0 10px;
+}
+
+.grid-header {
     display: grid;
     grid-template-rows: 50px;
     grid-template-columns: 1fr 50px;
     grid-template-areas:
         "title profile";
-    background-color: #003f72;
-    color: white;
-    font-weight: bold;
-    padding: 0 10px;
 }
 
 header .title {
@@ -30,4 +33,11 @@ header .title {
 .profile a {
     justify-content: center;
     align-items: center;
+}
+
+@media screen and (min-width: 1220px) {
+    .grid-header {
+        width: 1200px;
+        margin: 0 auto;
+    }
 }

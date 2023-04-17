@@ -10,27 +10,28 @@ class SignUpForm(ModelForm):
 
     class Meta:
         model = User
-        fields = ['first_name', 'last_name', "username", 'birthdate', 'email', 'password']
+        fields = [
+            "first_name",
+            "last_name",
+            "username",
+            "birthdate",
+            "email",
+            "password",
+        ]
         labels = {
             "first_name": "Vorname",
             "last_name": "Nachname",
             "username": "Benutzername",
             "birthdate": "Geburtsdatum",
             "email": "E-Mail Adresse",
-            "password": "Passwort"
+            "password": "Passwort",
         }
-        help_texts = {
-            "username": ""
-        }
-        error_messages = {
-            'name': {
-                "required": "Pflichtfeld"
-            }
-        }
+        help_texts = {"username": ""}
+        error_messages = {"name": {"required": "Pflichtfeld"}}
 
     def save(self, commit=True):
         user = super().save(commit=commit)
-        user.set_password(self.cleaned_data['password'])
+        user.set_password(self.cleaned_data["password"])
         if commit:
             user.save()
         return user

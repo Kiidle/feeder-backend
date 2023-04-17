@@ -28,7 +28,9 @@
 }
 
 .user {
-    margin: 25px 0;
+    width: 100%;
+    margin: 25px auto;
+
 }
 
 .user .fulname-container {
@@ -113,5 +115,25 @@
 }
 
 .count {
-    margin: 10px 0;
+    margin: 10px auto;
+}
+
+@media screen and (min-width: 520px) {
+    .user, .count, .grid-group {
+        width: 500px;
+        margin: 10px auto;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    .user, .count, .grid-group {
+        width: 750px;
+    }
+}
+
+@media screen and (min-width: 1220px) {
+    .grid-tab, .grid-tab-commentaries, .grid-tab-warns {
+        width: 1200px;
+        margin: 0 auto;
+    }
 }

@@ -13,19 +13,19 @@ class CommentaryView(generic.DetailView):
 
 class CommentaryCreateView(generic.CreateView):
     model = Commentary
-    fields = ['text']
+    fields = ["text"]
     template_name = "commentary/create.html"
 
     def get_success_url(self):
-        return reverse_lazy('feed', kwargs={"pk": self.kwargs.get('feed_id')})
+        return reverse_lazy("feed", kwargs={"pk": self.kwargs.get("feed_id")})
 
     def get_current_feed(self, **kwargs):
-        return Feed.objects.get(id=self.kwargs.get('feed_id'))
+        return Feed.objects.get(id=self.kwargs.get("feed_id"))
 
     def get_context_data(self, **kwargs):
         data = super().get_context_data(**kwargs)
         feed = self.get_current_feed(**kwargs)
-        data.update({'feed': feed})
+        data.update({"feed": feed})
         return data
 
     def form_valid(self, form):
@@ -36,11 +36,11 @@ class CommentaryCreateView(generic.CreateView):
 
 class CommentaryUpdateView(generic.UpdateView):
     model = Commentary
-    fields = ['text']
+    fields = ["text"]
     template_name = "commentary/update.html"
 
     def get_success_url(self):
-        return reverse_lazy('commentary', kwargs={'pk': self.kwargs['pk']})
+        return reverse_lazy("commentary", kwargs={"pk": self.kwargs["pk"]})
 
     def form_valid(self, form):
         form.instance.author = self.request.user
@@ -50,9 +50,9 @@ class CommentaryUpdateView(generic.UpdateView):
 def commentary_delete(request, pk):
     commentary = Commentary.objects.get(pk=pk)
 
-    if request.method == 'POST':
+    if request.method == "POST":
         feed_id = commentary.feed.id
         commentary.delete()
-        return redirect('feed', pk=feed_id)
+        return redirect("feed", pk=feed_id)
 
-    return (request, 'commentary/delete.html', {'commentary': commentary})
+    return (request, "commentary/delete.html", {"commentary": commentary})

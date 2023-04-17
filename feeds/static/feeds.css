@@ -233,3 +233,23 @@
     grid-area: delete;
     display: flex;
 }
+
+@media screen and (min-width: 520px) {
+    main > .grid-feeds, main > .grid-commentaries, main > .grid-warns {
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    main > .grid-feeds, main > .grid-commentaries, main > .grid-warns {
+        width: 750px;
+    }
+}
+
+@media screen and (min-width: 1220px) {
+    .grid-buttons {
+        width: 1200px;
+        margin: 10px auto;
+    }
+}

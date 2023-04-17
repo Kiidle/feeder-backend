@@ -5,15 +5,23 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
     dependencies = [
-        ('authentication', '0002_warn'),
+        ("authentication", "0002_warn"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='Role',
+            name="Role",
             fields=[
-                ('id', models.BigAutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('prefix', models.CharField(max_length=15)),
+                (
+                    "id",
+                    models.BigAutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("prefix", models.CharField(max_length=15)),
             ],
         ),
     ]

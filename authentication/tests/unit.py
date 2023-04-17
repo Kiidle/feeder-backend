@@ -8,6 +8,7 @@ User = get_user_model()
 
 # Create your tests here.
 
+
 class UserTestCase(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(
@@ -15,7 +16,7 @@ class UserTestCase(TestCase):
             username="testuser",
             password="testpassword",
             birthdate="2000-01-01",
-            verified=True
+            verified=True,
         )
 
     def test_user_create(self):

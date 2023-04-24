@@ -12,14 +12,14 @@ urlpatterns = [
         CommentaryCreateView.as_view(),
         name="commentary_create",
     ),
-    path("commentaries/<slug:pk>", CommentaryView.as_view(), name="commentary"),
+    path("commentaries/<int:pk>", CommentaryView.as_view(), name="commentary"),
     path(
-        "commentaries/<slug:pk>/update",
+        "commentaries/<int:pk>/update",
         CommentaryUpdateView.as_view(),
         name="commentary_update",
     ),
     path(
-        "commentaries/<slug:pk>/delete",
+        "commentaries/<int:pk>/delete",
         views.commentary_delete,
         name="commentary_delete",
     ),

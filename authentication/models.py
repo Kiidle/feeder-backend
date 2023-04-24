@@ -1,15 +1,6 @@
 from django.contrib.auth.models import AbstractUser
 from django.db import models
 from django.utils.translation import gettext_lazy as _
-
-
-class Role(models.Model):
-    prefix = models.CharField(max_length=15)
-
-    def __str__(self):
-        return self.prefix
-
-
 class User(AbstractUser):
     first_name = models.CharField(max_length=100, verbose_name=_("Vorname"))
     last_name = models.CharField(max_length=100, verbose_name=_("Nachname"))
@@ -20,8 +11,6 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
     birthdate = models.DateField(null=True, verbose_name=_("Geburtsdatum"))
     verified = models.BooleanField(null=True)
-    role = models.ForeignKey(Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True)
-
 
 class Warn(models.Model):
     class Reasons(models.TextChoices):

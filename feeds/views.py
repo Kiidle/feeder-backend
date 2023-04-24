@@ -16,8 +16,6 @@ class FeedsView(generic.ListView):
 
         context["feeds"] = super().get_queryset()
 
-        print(context)
-
         return context
 
 

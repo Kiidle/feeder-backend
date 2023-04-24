@@ -1,17 +1,17 @@
 from django.contrib.auth import get_user_model
 from django.test import TestCase
 
-from authentication.blacklist import censorer, is_blacklisted
+from authentication.blacklist import censorer
+from authentication.blacklist import is_blacklisted
 from feeds.models import Feed
+
 
 User = get_user_model()
 
 
 class FeedTestCase(TestCase):
     def setUp(self):
-        self.feedAuthor = User.objects.create(
-            username="feed.author", email="feed.author@test.test"
-        )
+        self.feedAuthor = User.objects.create(username="feed.author", email="feed.author@test.test")
         self.feed = Feed.objects.create(text="Test feed", author=self.feedAuthor)
 
     def test_feed_text(self):

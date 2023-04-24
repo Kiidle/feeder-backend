@@ -1,7 +1,10 @@
 from django.urls import path
 
 from . import views
-from .views import CommentaryCreateView, CommentaryUpdateView, CommentaryView
+from .views import CommentaryCreateView
+from .views import CommentaryUpdateView
+from .views import CommentaryView
+
 
 urlpatterns = [
     path(

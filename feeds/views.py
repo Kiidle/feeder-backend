@@ -26,18 +26,6 @@ class FeedView(generic.DetailView):
     template_name = "feeds/feed.html"
 
 
-def feed_create():
-    return
-
-
-def feed_edit():
-    return
-
-
-def feed_delete():
-    return
-
-
 class FeedCreateView(generic.CreateView):
     model = Feed
     fields = ["text"]

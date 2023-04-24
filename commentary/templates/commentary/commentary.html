@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,12 +10,12 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'feeds.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail</title>
+    <title>{% translate "Detailansicht" %}</title>
 </head>
 <body>
 <header>
     <div class="grid-header">
-        <h1 class="title">Detail Kommentar</h1>
+        <h1 class="title">{% translate "Detailansicht" %}</h1>
         <div class="profile">
             <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
         </div>

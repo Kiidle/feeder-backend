@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@
 <body>
 <header>
     <div class="grid-header">
-        <h1 class="title">Profil Bearbeiten</h1>
+        <h1 class="title">{% translate "Profil Bearbeiten" %}</h1>
         <div class="profile">
             <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
         </div>
@@ -49,13 +50,13 @@
                 <div>
                     {% csrf_token %}
                     {{ form.as_p }}
-                    <button type="submit">Speichern</button>
+                    <button type="submit">{% translate "Speichern" %}</button>
                 </div>
             </form>
         </div>
     {% else %}
         <div class="no-perm">
-            <p>Zugriff verweigert</p>
+            <p>{% translate "Zugriff verweigert" %}</p>
         </div>
     {% endif %}
 </main>

@@ -13,7 +13,7 @@
 </head>
 <body>
 <header>
-    <h1 class="title">Registrieren</h1>
+    <h1 class="title">{% translate "Registrieren" %}</h1>
 </header>
 <main>
     <div class="card">
@@ -21,9 +21,9 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Registrieren</button>
+                <button type="submit">{% translate "Registrieren" %}</button>
             </form>
-            <p>Stattdessen <a href="{% url 'login' %}">Anmelden</a></p>
+            <p>{% translate "Stattdessen" %} <a href="{% url 'login' %}">{% translate "Anmelden" %}</a></p>
         </div>
     </div>
 </main>

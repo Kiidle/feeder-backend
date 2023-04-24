@@ -1,5 +1,5 @@
 {% load static %}
-
+{% load i18n %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,11 +8,11 @@
     <link rel="stylesheet" href="{% static 'header.css' %}">
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Anmelden</title>
+    <title>{% translate "Anmelden" %}</title>
 </head>
 <body>
 <header>
-    <h1 class="title">Anmelden</h1>
+    <h1 class="title">{% translate "Anmelden" %}</h1>
 </header>
 <main>
     <div class="card">
@@ -20,9 +20,9 @@
             <form method="POST">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button type="submit">Anmelden</button>
+                <button type="submit">{% translate "Anmelden" %}</button>
             </form>
-            <p>Stattdessen <a href="{% url 'signup' %}">Registrieren</a></p>
+            <p>{% translate "Stattdessen" %} <a href="{% url 'signup' %}">{% translate "Registrieren" %}</a></p>
         </div>
     </div>
 </main>

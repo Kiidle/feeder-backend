@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 09:14+0000\n"
+"POT-Creation-Date: 2023-04-24 15:40+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,82 +18,293 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: authentication/forms.py:23 authentication/models.py:14
+#: authentication/forms.py:24 authentication/models.py:14
 msgid "Vorname"
 msgstr ""
 
-#: authentication/forms.py:24 authentication/models.py:15
+#: authentication/forms.py:25 authentication/models.py:15
 msgid "Nachname"
 msgstr ""
 
-#: authentication/models.py:30
+#: authentication/forms.py:26 authentication/forms.py:43
+msgid "Benutzername"
+msgstr ""
+
+#: authentication/forms.py:27 authentication/models.py:21
+msgid "Geburtsdatum"
+msgstr ""
+
+#: authentication/forms.py:28
+msgid "E-Mail Adresse"
+msgstr ""
+
+#: authentication/forms.py:29 authentication/forms.py:44
+msgid "Passwort"
+msgstr ""
+
+#: authentication/models.py:28
 msgid "Falschinformationen"
 msgstr ""
 
-#: authentication/models.py:31
+#: authentication/models.py:29
 msgid "Missbrauch von Privilegien"
 msgstr ""
 
-#: authentication/models.py:32
+#: authentication/models.py:30
 msgid "Belästigung"
 msgstr ""
 
-#: authentication/models.py:35
+#: authentication/models.py:31
+msgid "Cybermobing"
+msgstr ""
+
+#: authentication/models.py:31
+msgid "Cybermobbing"
+msgstr ""
+
+#: authentication/models.py:32
+msgid "Cybergrooming"
+msgstr ""
+
+#: authentication/models.py:33
 msgid "Whataboutismus"
 msgstr ""
 
-#: authentication/models.py:36
+#: authentication/models.py:34
 msgid "Relativierung"
 msgstr ""
 
-#: authentication/models.py:37
+#: authentication/models.py:35
 msgid "Erpressung"
 msgstr ""
 
-#: authentication/models.py:38
+#: authentication/models.py:36
 msgid "Drohung"
 msgstr ""
 
-#: authentication/models.py:39
+#: authentication/models.py:37
 msgid "Wortwahl"
 msgstr ""
 
-#: authentication/models.py:40
+#: authentication/models.py:38
 msgid "Hassrede"
 msgstr ""
 
-#: authentication/models.py:41
+#: authentication/models.py:39
 msgid "Beleidigung"
 msgstr ""
 
-#: authentication/models.py:42
+#: authentication/models.py:40
 msgid "Diskriminierung"
 msgstr ""
 
-#: authentication/models.py:43
+#: authentication/models.py:41
 msgid "Sexismus"
 msgstr ""
 
-#: authentication/models.py:44
+#: authentication/models.py:42
 msgid "Rassismus"
 msgstr ""
 
-#: authentication/models.py:45
+#: authentication/models.py:43
 msgid "Faschismus"
 msgstr ""
 
-#: authentication/models.py:46
+#: authentication/models.py:44
 msgid "Antisemitismus"
 msgstr ""
 
-#: authentication/models.py:47
+#: authentication/models.py:45
 msgid "Betrug"
 msgstr ""
 
-#: authentication/models.py:48
+#: authentication/models.py:46
 msgid "Spam"
 msgstr ""
 
+#: authentication/models.py:48
+msgid "Grund"
+msgstr ""
+
+#: authentication/templates/authentication/login.html:11
+#: authentication/templates/authentication/login.html:15
+#: authentication/templates/authentication/login.html:23
+#: authentication/templates/authentication/signup.html:26
+msgid "Anmelden"
+msgstr ""
+
+#: authentication/templates/authentication/login.html:25
+#: authentication/templates/authentication/signup.html:26
+msgid "Stattdessen"
+msgstr ""
+
+#: authentication/templates/authentication/login.html:25
 #: authentication/templates/authentication/signup.html:12
+#: authentication/templates/authentication/signup.html:16
+#: authentication/templates/authentication/signup.html:24
 msgid "Registrieren"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:14
+#: authentication/templates/authentication/user.html:19
+#: authentication/templates/authentication/user_commentaries.html:19
+#: authentication/templates/authentication/user_warns.html:14
+#: authentication/templates/authentication/user_warns.html:19
+msgid "Profil"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:43
+#: authentication/templates/authentication/user.html:87
+#: authentication/templates/authentication/user_commentaries.html:43
+#: authentication/templates/authentication/user_commentaries.html:86
+#: authentication/templates/authentication/user_commentaries.html:109
+#: authentication/templates/authentication/user_warns.html:42
+#: commentary/templates/commentary/create.html:37
+msgid "Unbekannt"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:58
+#: authentication/templates/authentication/user.html:72
+#: authentication/templates/authentication/user_commentaries.html:59
+#: authentication/templates/authentication/user_warns.html:56
+msgid "Feeds"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:61
+#: authentication/templates/authentication/user_commentaries.html:62
+#: authentication/templates/authentication/user_warns.html:59
+msgid "Antworten"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:64
+#: authentication/templates/authentication/user_commentaries.html:65
+#: authentication/templates/authentication/user_warns.html:62
+msgid "Verstösse"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:74
+msgid "Feed"
+msgstr ""
+
+#: authentication/templates/authentication/user.html:106
+#: authentication/templates/authentication/user_commentaries.html:128
+#: authentication/templates/authentication/user_group.html:54
+#: authentication/templates/authentication/user_update.html:59
+#: authentication/templates/authentication/user_warns.html:99
+#: authentication/templates/authentication/user_warns.html:104
+#: commentary/templates/commentary/create.html:70
+#: feeds/templates/feeds/create.html:47 feeds/templates/feeds/feeds.html:60
+#: feeds/templates/feeds/update.html:41
+msgid "Zugriff verweigert"
+msgstr ""
+
+#: authentication/templates/authentication/user_commentaries.html:72
+msgid "Kommentare"
+msgstr ""
+
+#: authentication/templates/authentication/user_commentaries.html:74
+msgid "Kommentar"
+msgstr ""
+
+#: authentication/templates/authentication/user_group.html:14
+#: authentication/templates/authentication/user_group.html:19
+msgid "Gruppen zuweisen"
+msgstr ""
+
+#: authentication/templates/authentication/user_group.html:36
+msgid "Verifizierung aktualisieren"
+msgstr ""
+
+#: authentication/templates/authentication/user_group.html:38
+#: authentication/templates/authentication/user_group.html:46
+msgid "Öffnen"
+msgstr ""
+
+#: authentication/templates/authentication/user_group.html:44
+msgid "Moderator aktualisieren"
+msgstr ""
+
+#: authentication/templates/authentication/user_group_moderator.html:14
+#: authentication/templates/authentication/user_group_moderator.html:19
+msgid "Moderator"
+msgstr ""
+
+#: authentication/templates/authentication/user_group_moderator.html:35
+#: authentication/templates/authentication/user_group_verify.html:35
+msgid "Umschalten"
+msgstr ""
+
+#: authentication/templates/authentication/user_group_verify.html:14
+#: authentication/templates/authentication/user_group_verify.html:19
+msgid "Verifizierung"
+msgstr ""
+
+#: authentication/templates/authentication/user_update.html:19
+msgid "Profil Bearbeiten"
+msgstr ""
+
+#: authentication/templates/authentication/user_update.html:53
+#: commentary/templates/commentary/update.html:40
+#: feeds/templates/feeds/update.html:35
+msgid "Speichern"
+msgstr ""
+
+#: authentication/templates/authentication/user_warns.html:70
+msgid "Verwarnungen"
+msgstr ""
+
+#: authentication/templates/authentication/user_warns.html:72
+msgid "Verwarnung"
+msgstr ""
+
+#: authentication/templates/authentication/warn_create.html:14
+#: authentication/templates/authentication/warn_create.html:18
+msgid "Verwarnung Erstellen"
+msgstr ""
+
+#: authentication/templates/authentication/warn_create.html:34
+msgid "Verwarnen"
+msgstr ""
+
+#: commentary/models.py:14
+msgid "Inhalt"
+msgstr ""
+
+#: commentary/templates/commentary/commentary.html:13
+#: commentary/templates/commentary/commentary.html:18
+#: feeds/templates/feeds/feed.html:12 feeds/templates/feeds/feed.html:17
+msgid "Detailansicht"
+msgstr ""
+
+#: commentary/templates/commentary/create.html:13
+#: commentary/templates/commentary/create.html:18
+msgid "Kommentar Erstellen"
+msgstr ""
+
+#: commentary/templates/commentary/create.html:60
+#: feeds/templates/feeds/create.html:36
+msgid "Posten"
+msgstr ""
+
+#: commentary/templates/commentary/create.html:63
+#: commentary/templates/commentary/update.html:43
+#: feeds/templates/feeds/create.html:39
+msgid "Dein Konto wurde gesperrt!"
+msgstr ""
+
+#: commentary/templates/commentary/update.html:13
+#: commentary/templates/commentary/update.html:18
+msgid "Kommentar Bearbeiten"
+msgstr ""
+
+#: feeds/templates/feeds/create.html:12 feeds/templates/feeds/create.html:17
+msgid "Feed Erstellen"
+msgstr ""
+
+#: feeds/templates/feeds/feeds.html:12 feeds/templates/feeds/feeds.html:17
+msgid "Home"
+msgstr ""
+
+#: feeds/templates/feeds/update.html:12 feeds/templates/feeds/update.html:17
+msgid "Feed Bearbeiten"
 msgstr ""

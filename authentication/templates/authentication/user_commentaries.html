@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -15,7 +16,7 @@
 <body>
 <header>
     <div class="grid-header">
-        <h1 class="title">Profil</h1>
+        <h1 class="title">{% translate "Profil" %}</h1>
         <div class="profile">
             <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
         </div>
@@ -39,7 +40,7 @@
                     {% if user.first_name != "" and user.last_name %}
                         <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
                     {% else %}
-                        <p class="fulname">Unknown</p>
+                        <p class="fulname">{% translate "Unbekannt" %}</p>
                     {% endif %}
                     {% if user %}
                         {% for group in user.groups.values %}
@@ -55,22 +56,22 @@
 
         <div class="grid-tab-commentaries feeds">
             <a href="{% url 'user' user.id %}" class="tab">
-                Feeds
+                {% translate "Feeds" %}
             </a>
             <a class="tab replies">
-                Antworten
+                {% translate "Antworten" %}
             </a>
             <a href="{% url 'user_warns' user.id %}" class="tab warns">
-                Verstösse
+                {% translate "Verstösse" %}
             </a>
             <div class="current">
             </div>
         </div>
         <div class="count">
             {% if user.commentaries.count > 1 or user.commentaries.count < 1 %}
-                <p>{{ user.commentaries.count }} Kommentare</p>
+                <p>{{ user.commentaries.count }} {% translate "Kommentare" %}</p>
             {% else %}
-                <p>{{ user.commentaries.count }} Kommentar</p>
+                <p>{{ user.commentaries.count }} {% translate "Kommentar" %}</p>
             {% endif %}
         </div>
         <div class="grid-commentaries">
@@ -82,7 +83,7 @@
                                 {% if commentary.feed.author.first_name != "" and commentary.feed.author.last_name != "" %}
                                     <p class="fulname">{{ commentary.feed.author.first_name }} {{ commentary.feed.author.last_name }}</p>
                                 {% else %}
-                                    <p class="fulname">Unknown</p>
+                                    <p class="fulname">{% translate "Unbekannt" %}</p>
                                 {% endif %}
                                 {% for group in commentary.feed.author.groups.values %}
                                     {% if group.name == "verified" %}
@@ -105,7 +106,7 @@
                                 {% if commentary.author.first_name != "" and commentary.author.last_name != "" %}
                                     <p class="fulname">{{ commentary.author.first_name }} {{ commentary.author.last_name }}</p>
                                 {% else %}
-                                    <p class="fulname">Unknown</p>
+                                    <p class="fulname">{% translate "Unbekannt" %}</p>
                                 {% endif %}
                                 {% for group in commentary.author.groups.values %}
                                     {% if group.name == "verified" %}
@@ -124,7 +125,7 @@
         </div>
     {% else %}
         <div class="no-perm">
-            <p>Zugriff verweigert</p>
+            <p>{% translate "Zugriff verweigert" %}</p>
         </div>
     {% endif %}
 </main>

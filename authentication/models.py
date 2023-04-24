@@ -18,32 +18,32 @@ class User(AbstractUser):
 
     USERNAME_FIELD = "email"
     REQUIRED_FIELDS = ["username"]
-    birthdate = models.DateField(null=True, verbose_name="Geburtsdatum")
+    birthdate = models.DateField(null=True, verbose_name=_("Geburtsdatum"))
     verified = models.BooleanField(null=True)
     role = models.ForeignKey(Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True)
 
 
 class Warn(models.Model):
     class Reasons(models.TextChoices):
-        MISINFORMATION = "Falschinformationen", _("Falschinformationen")
-        ABUSE = "Missbrauch von Privilegien", _("Missbrauch von Privilegien")
-        HARASSMENT = "Belästigung", _("Belästigung")
-        BULLYING = "Cybermobing", "Cybermobbing"
-        GROOMING = "Cybergrooming", "Cybergrooming"
-        WHATABOUTISM = "Whataboutismus", _("Whataboutismus")
-        RELATIVISATION = "Relativierung", _("Relativierung")
-        BLACKMAILING = "Erpressung", _("Erpressung")
-        THREAT = "Drohung", _("Drohung")
-        COW = "Wortwahl", _("Wortwahl")
-        HATESPEECH = "Hassrede", _("Hassrede")
-        SWEARWORD = "Beleidigung", _("Beleidigung")
-        DISCRIMINATION = "Diskriminierung", _("Diskriminierung")
-        SEXISM = "Sexismus", _("Sexismus")
-        RACISM = "Rassismus", _("Rassismus")
-        FACISM = "Faschismus", _("Faschismus")
-        ANTISEMITISM = "Antisemitismus", _("Antisemitismus")
-        SCAM = "Betrug", _("Betrug")
-        SPAM = "Spam", _("Spam")
+        MISINFORMATION = _("Falschinformationen"), _("Falschinformationen")
+        ABUSE = _("Missbrauch von Privilegien"), _("Missbrauch von Privilegien")
+        HARASSMENT = _("Belästigung"), _("Belästigung")
+        BULLYING = _("Cybermobing"), _("Cybermobbing")
+        GROOMING = _("Cybergrooming"), _("Cybergrooming")
+        WHATABOUTISM = _("Whataboutismus"), _("Whataboutismus")
+        RELATIVISATION = _("Relativierung"), _("Relativierung")
+        BLACKMAILING = _("Erpressung"), _("Erpressung")
+        THREAT = _("Drohung"), _("Drohung")
+        COW = _("Wortwahl"), _("Wortwahl")
+        HATESPEECH = _("Hassrede"), _("Hassrede")
+        SWEARWORD = _("Beleidigung"), _("Beleidigung")
+        DISCRIMINATION = _("Diskriminierung"), _("Diskriminierung")
+        SEXISM = _("Sexismus"), _("Sexismus")
+        RACISM = _("Rassismus"), _("Rassismus")
+        FACISM = _("Faschismus"), _("Faschismus")
+        ANTISEMITISM = _("Antisemitismus"), _("Antisemitismus")
+        SCAM = _("Betrug"), _("Betrug")
+        SPAM = _("Spam"), _("Spam")
 
-    reason = models.CharField(max_length=30, choices=Reasons.choices, default=Reasons.HATESPEECH)
+    reason = models.CharField(max_length=30, choices=Reasons.choices, default=Reasons.HATESPEECH, verbose_name=_("Grund"))
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="warns")

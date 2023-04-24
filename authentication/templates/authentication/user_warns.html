@@ -1,4 +1,5 @@
 {% load static %}
+{% load i18n %}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,12 +11,12 @@
     <link rel="stylesheet" href="{% static 'style.css' %}">
     <link rel="stylesheet" href="{% static 'feeds.css' %}">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home</title>
+    <title>{% translate "Profil" %}</title>
 </head>
 <body>
 <header>
     <div class="grid-header">
-        <h1 class="title">Profil</h1>
+        <h1 class="title">{% translate "Profil" %}</h1>
         <div class="profile">
             <a href="{% url 'user' request.user.id %}"><img src="{% static 'svgs/account.svg' %}" height="40px"/></a>
         </div>
@@ -38,7 +39,7 @@
                 {% if user.first_name != "" and user.last_name %}
                     <p class="fulname">{{ user.first_name }} {{ user.last_name }}</p>
                 {% else %}
-                    <p class="fulname">Unknown</p>
+                    <p class="fulname">{% translate "Unbekannt" %}</p>
                 {% endif %}
                 {% if user %}
                     {% for group in user.groups.values %}
@@ -52,13 +53,13 @@
         </div>
         <div class="grid-tab-warns feeds">
             <a href="{% url 'user' user.id %}" class="tab">
-                Feeds
+                {% translate "Feeds" %}
             </a>
             <a href="{% url 'user_commentaries' user.id %}" class="tab replies">
-                Antworten
+                {% translate "Antworten" %}
             </a>
             <a class="tab warns">
-                Verstösse
+                {% translate "Verstösse" %}
             </a>
             <div class="current">
             </div>
@@ -66,9 +67,9 @@
         {% if request.user.id == user.id or perms.authentication.view_warn %}
             <div class="count">
                 {% if user.warns.count > 1 or user.warns.count < 1 %}
-                    <p>{{ user.warns.count }} Verwarnungen</p>
+                    <p>{{ user.warns.count }} {% translate "Verwarnungen" %}</p>
                 {% else %}
-                    <p>{{ user.warns.count }} Verwarnung</p>
+                    <p>{{ user.warns.count }} {% translate "Verwarnung" %}</p>
                 {% endif %}
             </div>
             {% if perms.authentication.add_warn and request.user.id != user.id %}
@@ -95,12 +96,12 @@
             </div>
         {% else %}
             <div class="no-perm">
-                <p>Zugriff verweigert</p>
+                <p>{% translate "Zugriff verweigert" %}</p>
             </div>
         {% endif %}
     {% else %}
         <div class="no-perm">
-            <p>Zugriff verweigert</p>
+            <p>{% translate "Zugriff verweigert" %}</p>
         </div>
     {% endif %}
 </main>

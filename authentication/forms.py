@@ -23,10 +23,10 @@ class SignUpForm(ModelForm):
         labels = {
             "first_name": _("Vorname"),
             "last_name": _("Nachname"),
-            "username": "Benutzername",
-            "birthdate": "Geburtsdatum",
-            "email": "E-Mail Adresse",
-            "password": "Passwort",
+            "username": _("Benutzername"),
+            "birthdate": _("Geburtsdatum"),
+            "email": _("E-Mail Adresse"),
+            "password": _("Passwort"),
         }
         help_texts = {"username": ""}
         error_messages = {"name": {"required": "Pflichtfeld"}}
@@ -40,5 +40,5 @@ class SignUpForm(ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label="Benutzername")
-    password = forms.CharField(widget=forms.PasswordInput, label="Passwort")
+    username = forms.CharField(label=_("Benutzername"))
+    password = forms.CharField(widget=forms.PasswordInput, label=_("Passwort"))

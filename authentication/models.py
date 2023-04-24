@@ -11,8 +11,8 @@ class Role(models.Model):
 
 
 class User(AbstractUser):
-    first_name = models.CharField(max_length=100, verbose_name="Vorname")
-    last_name = models.CharField(max_length=100, verbose_name="Nachname")
+    first_name = models.CharField(max_length=100, verbose_name=_("Vorname"))
+    last_name = models.CharField(max_length=100, verbose_name=_("Nachname"))
     username = models.EmailField(unique=True, verbose_name="Benutzername")
     email = models.EmailField(unique=True, verbose_name="E-Mail Adresse")
 

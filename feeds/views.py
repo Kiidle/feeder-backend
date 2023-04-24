@@ -34,10 +34,6 @@ def feed_edit():
     return
 
 
-def feed_delete():
-    return
-
-
 class FeedCreateView(generic.CreateView):
     model = Feed
     fields = ["text"]

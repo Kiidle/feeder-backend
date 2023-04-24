@@ -20,9 +20,7 @@ class User(AbstractUser):
     REQUIRED_FIELDS = ["username"]
     birthdate = models.DateField(null=True, verbose_name="Geburtsdatum")
     verified = models.BooleanField(null=True)
-    role = models.ForeignKey(
-        Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True
-    )
+    role = models.ForeignKey(Role, on_delete=models.SET_NULL, related_name="roles", null=True, blank=True)
 
 
 class Warn(models.Model):
@@ -47,7 +45,5 @@ class Warn(models.Model):
         SCAM = "Betrug", _("Betrug")
         SPAM = "Spam", _("Spam")
 
-    reason = models.CharField(
-        max_length=30, choices=Reasons.choices, default=Reasons.HATESPEECH
-    )
+    reason = models.CharField(max_length=30, choices=Reasons.choices, default=Reasons.HATESPEECH)
     user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="warns")

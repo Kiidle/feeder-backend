@@ -1,15 +1,23 @@
 from django.contrib import messages
-from django.contrib.auth import authenticate, get_user_model, login, logout
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth import authenticate
+from django.contrib.auth import get_user_model
+from django.contrib.auth import login
+from django.contrib.auth import logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import user_passes_test
 from django.contrib.auth.models import Group
 from django.http import JsonResponse
-from django.shortcuts import get_object_or_404, redirect, render
+from django.shortcuts import get_object_or_404
+from django.shortcuts import redirect
+from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
 from authentication.models import Warn
 
-from .forms import LoginForm, SignUpForm
+from .forms import LoginForm
+from .forms import SignUpForm
+
 
 User = get_user_model()
 
@@ -52,9 +60,7 @@ def assignmod(request, user_id):
             user.groups.add(moderator_group)
         return redirect("user_group", user.id)
     else:
-        return render(
-            request, "authentication/user_group_moderator.html", {"user": user}
-        )
+        return render(request, "authentication/user_group_moderator.html", {"user": user})
 
 
 def logout_view(request):
@@ -94,10 +100,10 @@ def sign_in(request):
             user = authenticate(request, email=email, password=password)
             if user:
                 login(request, user)
-                messages.success(request, f"Erfolgreich angemeldet!")
+                messages.success(request, "Erfolgreich angemeldet!")
                 return redirect("feeds")
 
-        messages.error(request, f"Benutzername oder Passwort ist falsch.")
+        messages.error(request, "Benutzername oder Passwort ist falsch.")
         return render(request, "authentication/login.html", {"form": form})
 
 

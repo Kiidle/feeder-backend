@@ -3,6 +3,7 @@ from django.contrib.auth import get_user_model
 from django.forms import ModelForm
 from django.utils.translation import gettext_lazy as _
 
+
 User = get_user_model()
 
 
@@ -39,5 +40,5 @@ class SignUpForm(ModelForm):
 
 
 class LoginForm(forms.Form):
-    username = forms.CharField(label='Benutzername')
-    password = forms.CharField(widget=forms.PasswordInput, label='Passwort')
+    username = forms.CharField(label="Benutzername")
+    password = forms.CharField(widget=forms.PasswordInput, label="Passwort")

@@ -1,8 +1,10 @@
 from django.contrib.auth import get_user_model
 from django.db import models
 
-from authentication.blacklist import censorer, is_blacklisted
+from authentication.blacklist import censorer
+from authentication.blacklist import is_blacklisted
 from authentication.models import Warn
+
 
 User = get_user_model()
 

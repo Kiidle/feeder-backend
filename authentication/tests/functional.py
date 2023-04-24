@@ -9,6 +9,7 @@ from authentication.models import Warn
 from commentary.models import Commentary
 from feeds.models import Feed
 
+
 User = get_user_model()
 
 
@@ -16,9 +17,7 @@ class UserTestCase(TestCase):
     def test_view_user(self):
         clio = Client()
 
-        user = User.objects.create(
-            username="view.user", email="view.user@test.test", password="viewuser"
-        )
+        user = User.objects.create(username="view.user", email="view.user@test.test", password="viewuser")
         user.user_permissions.add(Permission.objects.get(codename="view_user"))
         user.user_permissions.add(Permission.objects.get(codename="view_feed"))
         clio.force_login(user)
@@ -77,7 +76,5 @@ class UserTestCase(TestCase):
         self.assertEqual(200, response.status_code)
         soup = BeautifulSoup(response.content)
 
-        self.assertEqual(
-            soup.find(text="view.user.warns@test.test"), "view.user.warns@test.test"
-        )
+        self.assertEqual(soup.find(text="view.user.warns@test.test"), "view.user.warns@test.test")
         self.assertEqual(soup.find(text="Fake news"), "Fake news")

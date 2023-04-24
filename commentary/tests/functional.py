@@ -8,6 +8,7 @@ from django.test import Client
 from commentary.models import Commentary
 from feeds.models import Feed
 
+
 User = get_user_model()
 
 
@@ -48,9 +49,7 @@ class CommentaryTestCase(TestCase):
         clio.force_login(user)
 
         feed = Feed.objects.create(text="Test Feed", author=user)
-        commentary = Commentary.objects.create(
-            text="Test Commentary", feed=feed, author=user
-        )
+        commentary = Commentary.objects.create(text="Test Commentary", feed=feed, author=user)
 
         response = clio.get(f"/commentaries/{commentary.id}", follow=True)
         self.assertEqual(200, response.status_code)

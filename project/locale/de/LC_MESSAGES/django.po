@@ -1,0 +1,99 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2023-04-24 09:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: authentication/forms.py:23 authentication/models.py:14
+msgid "Vorname"
+msgstr ""
+
+#: authentication/forms.py:24 authentication/models.py:15
+msgid "Nachname"
+msgstr ""
+
+#: authentication/models.py:30
+msgid "Falschinformationen"
+msgstr ""
+
+#: authentication/models.py:31
+msgid "Missbrauch von Privilegien"
+msgstr ""
+
+#: authentication/models.py:32
+msgid "Belästigung"
+msgstr ""
+
+#: authentication/models.py:35
+msgid "Whataboutismus"
+msgstr ""
+
+#: authentication/models.py:36
+msgid "Relativierung"
+msgstr ""
+
+#: authentication/models.py:37
+msgid "Erpressung"
+msgstr ""
+
+#: authentication/models.py:38
+msgid "Drohung"
+msgstr ""
+
+#: authentication/models.py:39
+msgid "Wortwahl"
+msgstr ""
+
+#: authentication/models.py:40
+msgid "Hassrede"
+msgstr ""
+
+#: authentication/models.py:41
+msgid "Beleidigung"
+msgstr ""
+
+#: authentication/models.py:42
+msgid "Diskriminierung"
+msgstr ""
+
+#: authentication/models.py:43
+msgid "Sexismus"
+msgstr ""
+
+#: authentication/models.py:44
+msgid "Rassismus"
+msgstr ""
+
+#: authentication/models.py:45
+msgid "Faschismus"
+msgstr ""
+
+#: authentication/models.py:46
+msgid "Antisemitismus"
+msgstr ""
+
+#: authentication/models.py:47
+msgid "Betrug"
+msgstr ""
+
+#: authentication/models.py:48
+msgid "Spam"
+msgstr ""
+
+#: authentication/templates/authentication/signup.html:12
+msgid "Registrieren"
+msgstr ""

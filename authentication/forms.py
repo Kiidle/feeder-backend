@@ -1,6 +1,7 @@
 from django import forms
 from django.contrib.auth import get_user_model
 from django.forms import ModelForm
+from django.utils.translation import gettext_lazy as _
 
 User = get_user_model()
 
@@ -19,8 +20,8 @@ class SignUpForm(ModelForm):
             "password",
         ]
         labels = {
-            "first_name": "Vorname",
-            "last_name": "Nachname",
+            "first_name": _("Vorname"),
+            "last_name": _("Nachname"),
             "username": "Benutzername",
             "birthdate": "Geburtsdatum",
             "email": "E-Mail Adresse",

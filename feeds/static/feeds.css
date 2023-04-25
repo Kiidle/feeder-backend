@@ -109,10 +109,11 @@
     display: grid;
     grid-gap: 20px;
     grid-template-columns: 1fr;
-    grid-template-rows: 50px 1fr;
+    grid-template-rows: 50px 1fr 25px;
     grid-template-areas:
         "author"
-        "text";
+        "text"
+        "published";
     padding: 12px;
 }
 
@@ -169,8 +170,22 @@
     grid-area: text;
 }
 
+.feed .published, .commentary .published {
+    grid-area: published;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.feed .published p, .commentary .published p {
+    color: #8a8a8a;
+}
+
 .grid-commentaries {
     display: grid;
+    color: #727272;
     grid-gap: 20px;
 }
 
@@ -182,7 +197,8 @@
     grid-template-areas:
         "answer"
         "author"
-        "text";
+        "text"
+        "published";
     padding: 12px;
 }
 

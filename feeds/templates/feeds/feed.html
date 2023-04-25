@@ -57,6 +57,9 @@
             <div class="text">
                 <p>{{ feed.text }}</p>
             </div>
+            <div class="published">
+                <p>{{ feed.time_since_published }}</p>
+            </div>
         </div>
         {% if perms.commentary.view_commentary %}
             <div class="grid-buttons grid-buttons-home">
@@ -90,6 +93,9 @@
                             </div>
                             <div class="text">
                                 <p>{{ commentary.text }}</p>
+                            </div>
+                            <div class="published">
+                                <p>{{ commentary.time_since_published }}</p>
                             </div>
                         </div>
                     </a>

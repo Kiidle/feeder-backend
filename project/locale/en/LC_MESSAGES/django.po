@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-04-24 15:40+0000\n"
+"POT-Creation-Date: 2023-04-25 09:42+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,11 +18,11 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: authentication/forms.py:24 authentication/models.py:14
+#: authentication/forms.py:24 authentication/models.py:5
 msgid "Vorname"
 msgstr "First name"
 
-#: authentication/forms.py:25 authentication/models.py:15
+#: authentication/forms.py:25 authentication/models.py:6
 msgid "Nachname"
 msgstr "Surname"
 
@@ -30,7 +30,7 @@ msgstr "Surname"
 msgid "Benutzername"
 msgstr "Username"
 
-#: authentication/forms.py:27 authentication/models.py:21
+#: authentication/forms.py:27 authentication/models.py:12
 msgid "Geburtsdatum"
 msgstr "Birthdate"
 
@@ -42,87 +42,87 @@ msgstr "E-Mail Address"
 msgid "Passwort"
 msgstr "Password"
 
-#: authentication/models.py:28
+#: authentication/models.py:17
 msgid "Falschinformationen"
 msgstr "Misinformation"
 
-#: authentication/models.py:29
+#: authentication/models.py:18
 msgid "Missbrauch von Privilegien"
 msgstr "Abuse of privileges"
 
-#: authentication/models.py:30
+#: authentication/models.py:19
 msgid "Belästigung"
 msgstr "Harassment"
 
-#: authentication/models.py:31
+#: authentication/models.py:20
 msgid "Cybermobing"
 msgstr "Cyberbullying"
 
-#: authentication/models.py:31
+#: authentication/models.py:20
 msgid "Cybermobbing"
 msgstr "Cyberbullying"
 
-#: authentication/models.py:32
+#: authentication/models.py:21
 msgid "Cybergrooming"
 msgstr "Cybergrooming"
 
-#: authentication/models.py:33
+#: authentication/models.py:22
 msgid "Whataboutismus"
 msgstr "Whataboutism"
 
-#: authentication/models.py:34
+#: authentication/models.py:23
 msgid "Relativierung"
 msgstr "Relativization"
 
-#: authentication/models.py:35
+#: authentication/models.py:24
 msgid "Erpressung"
 msgstr "Blackmail"
 
-#: authentication/models.py:36
+#: authentication/models.py:25
 msgid "Drohung"
 msgstr "Threat"
 
-#: authentication/models.py:37
+#: authentication/models.py:26
 msgid "Wortwahl"
 msgstr "Choice of words"
 
-#: authentication/models.py:38
+#: authentication/models.py:27
 msgid "Hassrede"
 msgstr "Hate speech"
 
-#: authentication/models.py:39
+#: authentication/models.py:28
 msgid "Beleidigung"
 msgstr "Insult"
 
-#: authentication/models.py:40
+#: authentication/models.py:29
 msgid "Diskriminierung"
 msgstr "Discrimination"
 
-#: authentication/models.py:41
+#: authentication/models.py:30
 msgid "Sexismus"
 msgstr "Sexism"
 
-#: authentication/models.py:42
+#: authentication/models.py:31
 msgid "Rassismus"
 msgstr "Racism"
 
-#: authentication/models.py:43
+#: authentication/models.py:32
 msgid "Faschismus"
 msgstr "Fascism"
 
-#: authentication/models.py:44
+#: authentication/models.py:33
 msgid "Antisemitismus"
 msgstr "Antisemitism"
 
-#: authentication/models.py:45
+#: authentication/models.py:34
 msgid "Betrug"
 msgstr "Scam"
 
-#: authentication/models.py:46
+#: authentication/models.py:35
 msgid "Spam"
 msgstr "Spam"
 
-#: authentication/models.py:48
+#: authentication/models.py:37
 msgid "Grund"
 msgstr "Reason"
 
@@ -193,7 +193,7 @@ msgstr "Feed"
 #: authentication/templates/authentication/user_warns.html:99
 #: authentication/templates/authentication/user_warns.html:104
 #: commentary/templates/commentary/create.html:70
-#: feeds/templates/feeds/create.html:47 feeds/templates/feeds/feeds.html:60
+#: feeds/templates/feeds/create.html:47 feeds/templates/feeds/feeds.html:63
 #: feeds/templates/feeds/update.html:41
 msgid "Zugriff verweigert"
 msgstr "Access denied"
@@ -266,9 +266,52 @@ msgstr "Warn Create"
 msgid "Verwarnen"
 msgstr "Warn"
 
-#: commentary/models.py:14
+#: commentary/models.py:16
 msgid "Inhalt"
 msgstr "Content"
+
+#: commentary/models.py:18 feeds/models.py:16
+msgid "Veröffentlicht"
+msgstr "Published"
+
+#: commentary/models.py:27 feeds/models.py:29
+#, python-brace-format
+msgid "Vor {count} Jahr{plural}"
+msgstr "{count} year{plural} ago"
+
+#: commentary/models.py:27 commentary/models.py:30 commentary/models.py:32
+#: feeds/models.py:29 feeds/models.py:32 feeds/models.py:34
+msgid "e"
+msgstr "s"
+
+#: commentary/models.py:30 feeds/models.py:32
+#, python-brace-format
+msgid "Vor {count} Monat{plural}"
+msgstr "{count} month{plural} ago"
+
+#: commentary/models.py:32 feeds/models.py:34
+#, python-brace-format
+msgid "Vor {count} Tag{plural}"
+msgstr "{count} day{plural} ago"
+
+#: commentary/models.py:35 feeds/models.py:37
+#, python-brace-format
+msgid "Vor {count} Stunde{plural}"
+msgstr "{count} hour{plural} ago"
+
+#: commentary/models.py:35 commentary/models.py:38 feeds/models.py:37
+#: feeds/models.py:40
+msgid "n"
+msgstr "s"
+
+#: commentary/models.py:38 feeds/models.py:40
+#, python-brace-format
+msgid "Vor {count} Minute{plural}"
+msgstr "{count} minute{plural} ago"
+
+#: commentary/models.py:40 feeds/models.py:42
+msgid "Gerade eben"
+msgstr "Now"
 
 #: commentary/templates/commentary/commentary.html:13
 #: commentary/templates/commentary/commentary.html:18

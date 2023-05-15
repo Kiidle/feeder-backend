@@ -12,6 +12,7 @@ from .views import FeedsAPIView
 urlpatterns = [
     path("", login_required(FeedsView.as_view()), name="feeds"),
     path("api/feeds", FeedsAPIView.as_view(), name="feeds_api"),
+    path("api/feeds/create", views.feed_api_create, name='feed_api_create'),
     path("feeds/create", FeedCreateView.as_view(), name="feed_create"),
     path("feeds/<int:pk>", FeedView.as_view(), name="feed"),
     path("feeds/<int:pk>/update", FeedUpdateView.as_view(), name="feed_update"),

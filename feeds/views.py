@@ -2,10 +2,12 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from rest_framework import generics
+from rest_framework import generics, serializers
+from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import FeedSerializer
+from feeds.serializers import FeedSerializer
 from rest_framework.generics import ListAPIView
+from rest_framework import status
 
 from feeds.models import Feed
 
@@ -25,6 +27,19 @@ class FeedsView(generic.ListView):
 class FeedsAPIView(ListAPIView):
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
+
+@api_view(['POST'])
+def feed_api_create(request):
+    feed = FeedSerializer(data=request.data)
+
+    if Feed.objects.filter(**request.data).exists():
+        raise serializers.ValidationError('This data already exists')
+
+    if feed.is_valid():
+        feed.save()
+        return Response(feed.data)
+    else:
+        return Response(status=status.HTTP_404_NOT_FOUND)
 
 class FeedView(generic.DetailView):
     model = Feed

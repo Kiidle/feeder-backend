@@ -1,0 +1,271 @@
+.grid-buttons {
+    display: grid;
+    grid-gap: 10px;
+    grid-template-columns: 50px 1fr 50px 50px 50px;
+    grid-template-rows: 50px;
+    margin: 10px 0;
+}
+
+.grid-buttons-home {
+    grid-template-areas:
+        ". . . . create";
+}
+
+.grid-buttons-detail {
+    grid-template-areas:
+        "back . . update delete";
+}
+
+.grid-buttons-user {
+    grid-template-areas:
+        "back . . . update";
+}
+
+.grid-buttons-user-update {
+    grid-template-areas:
+        "back . tree logout delete";
+}
+
+
+.crud-button {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    border-radius: 2px;
+}
+
+.crud-button img {
+    filter: invert();
+}
+
+.tree {
+    grid-area: tree;
+    background-color: #003f72;
+}
+
+.back {
+    grid-area: back;
+    background-color: #003f72;
+}
+
+.logout {
+    grid-area: logout;
+    background-color: #890611;
+    border-radius: 2px;
+}
+
+.warn form .delete {
+    width: 100%;
+    border: none;
+    text-align: center;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 0;
+
+}
+
+.delete {
+    grid-area: delete;
+    background-color: #890611;
+    border-radius: 2px;
+}
+
+.delete input {
+    grid-area: input;
+    width: 24px;
+    height: 24px;
+    padding: 13px;
+    border-width: 0;
+    color: white;
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    display: flex;
+    background-color: transparent;
+    filter: invert();
+}
+
+.update {
+    grid-area: update;
+    background-color: #003f72;
+}
+
+.create {
+    grid-area: create;
+    background-color: #003f72;
+}
+
+.grid-feeds {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.feed {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 1fr 25px;
+    grid-template-areas:
+        "author"
+        "text"
+        "published";
+    padding: 12px;
+}
+
+.feed a, .feed p, .commentary a, .commentary p {
+    text-decoration: none;
+    color: black;
+    word-break: break-word;
+}
+
+.feed .commentary-author {
+    grid-area: author;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "answer"
+        "fulname"
+        "email";
+}
+
+.feed .author {
+    grid-area: author;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr 25px;
+    grid-template-areas:
+        "fulname-container"
+        "email";
+}
+
+.verify {
+    grid-area: verify;
+}
+
+.author .fulname-container {
+    font-weight: bold;
+    grid-area: fulname-container;
+    display: flex;
+    align-items: center;
+}
+
+.fulname {
+    margin: 0 5px 0 0;
+}
+
+.author .email {
+    grid-area: email;
+    display: flex;
+    align-items: center;
+    color: #727272
+}
+
+.feed .text {
+    grid-area: text;
+}
+
+.feed .published, .commentary .published {
+    grid-area: published;
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    font-size: 0.75rem;
+    font-weight: bold;
+}
+
+.feed .published p, .commentary .published p {
+    color: #8a8a8a;
+}
+
+.grid-commentaries {
+    display: grid;
+    color: #727272;
+    grid-gap: 20px;
+}
+
+.commentary {
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: 1fr;
+    grid-template-rows: 25px 50px 1fr;
+    grid-template-areas:
+        "answer"
+        "author"
+        "text"
+        "published";
+    padding: 12px;
+}
+
+.commentary .author {
+    grid-area: author;
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    grid-template-columns: 1fr;
+    grid-template-areas:
+        "fulname-container"
+        "email";
+}
+
+.commentary .answer {
+    grid-area: answer;
+}
+
+.answer {
+    font-size: 0.8rem;
+}
+
+.answer p {
+    color: #727272
+}
+
+.answer .answer-email {
+    text-decoration: underline;
+    color: #003f72;
+}
+
+.grid-warns {
+    display: grid;
+    grid-gap: 20px;
+}
+
+.warn {
+    color: #890611;
+    display: grid;
+    grid-template-columns: 1fr 25px;
+    grid-template-rows: 25px;
+    grid-template-areas:
+        "text delete";
+    padding: 12px;
+    word-break: break-word;
+}
+
+.warn form {
+    grid-area: delete;
+    display: flex;
+}
+
+@media screen and (min-width: 520px) {
+    main > .grid-feeds, main > .grid-commentaries, main > .grid-warns {
+        width: 500px;
+        margin: 0 auto;
+    }
+}
+
+@media screen and (min-width: 770px) {
+    main > .grid-feeds, main > .grid-commentaries, main > .grid-warns {
+        width: 750px;
+    }
+}
+
+@media screen and (min-width: 1220px) {
+    .grid-buttons {
+        width: 1200px;
+        margin: 10px auto;
+    }
+}

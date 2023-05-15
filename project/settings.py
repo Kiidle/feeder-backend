@@ -12,6 +12,9 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 import os.path
 from pathlib import Path
 from configurations import Configuration
+import os
+import random
+import string
 
 
 class Base(Configuration):
@@ -143,6 +146,8 @@ class Production(Base):
     # Database
     # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+    SECRET_KEY = os.environ.get('SECRET_KEY', ''.join(
+        random.SystemRandom().choice(string.ascii_letters + string.digits + string.punctuation) for _ in range(50)))
     DATABASES = {
 
         'default': {

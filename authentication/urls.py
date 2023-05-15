@@ -11,9 +11,11 @@ from .views import UserView
 from .views import UserWarnsView
 from .views import verify_user
 from .views import WarnCreateView
+from .views import UsersAPIView
 
 
 urlpatterns = [
+    path("api/users", UsersAPIView.as_view(), name="users_api"),
     path("signup/", SignUpView.as_view(), name="signup"),
     path("logout/", views.custom_logout, name="logout"),
     path("login/", views.sign_in, name="login"),

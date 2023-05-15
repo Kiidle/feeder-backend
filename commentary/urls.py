@@ -4,9 +4,10 @@ from . import views
 from .views import CommentaryCreateView
 from .views import CommentaryUpdateView
 from .views import CommentaryView
-
+from .views import CommentaryAPIView
 
 urlpatterns = [
+    path("api/commentaries/<int:pk>", CommentaryAPIView.as_view(), name="commentary_api"),
     path(
         "feeds/<int:feed_id>/commentaries/create",
         CommentaryCreateView.as_view(),

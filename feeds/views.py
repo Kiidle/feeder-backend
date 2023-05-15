@@ -2,6 +2,10 @@ from django.contrib import messages
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
+from rest_framework import generics
+from rest_framework.response import Response
+from .serializers import FeedSerializer
+from rest_framework.generics import ListAPIView
 
 from feeds.models import Feed
 
@@ -18,6 +22,9 @@ class FeedsView(generic.ListView):
 
         return context
 
+class FeedsAPIView(ListAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = FeedSerializer
 
 class FeedView(generic.DetailView):
     model = Feed
@@ -59,7 +66,6 @@ class FeedUpdateView(generic.UpdateView):
         context = super().get_context_data(**kwargs)
         context["update"] = True
         return context
-
 
 def feed_delete(request, pk):
     feed = Feed.objects.get(pk=pk)

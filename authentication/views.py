@@ -12,6 +12,10 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
+from rest_framework import generics
+from rest_framework.response import Response
+from .serializers import UserSerializer
+from rest_framework.generics import ListAPIView
 
 from authentication.models import Warn
 
@@ -21,7 +25,7 @@ from .forms import SignUpForm
 
 User = get_user_model()
 
-group, created = Group.objects.get_or_create(name="verified")
+
 
 
 def can_verify(user):
@@ -38,7 +42,7 @@ def verify_user(request, user_id):
     user = get_object_or_404(User, id=user_id)
 
     if request.method == "POST":
-        verified_group = Group.objects.get(name="verified")
+        verified_group = Group.objects.get_or_create(name="verified")
         if user.groups.filter(name="verified").exists():
             user.groups.remove(verified_group)
         else:
@@ -74,8 +78,8 @@ class SignUpView(generic.CreateView):
 
     def form_valid(self, form):
         response = super().form_valid(form)
-        group = Group.objects.get(name="default")
-        self.object.groups.add(group)
+        # group = Group.objects.get_or_create(name="default")
+        # self.object.groups.add(group)
         return response
 
 
@@ -120,6 +124,9 @@ class UsersView(generic.ListView):
     ]
     template_name = "authentication/users.html"
 
+class UsersAPIView(ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 class UserView(generic.DetailView):
     model = User

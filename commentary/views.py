@@ -1,15 +1,21 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
-
 from commentary.models import Commentary
 from feeds.models import Feed
+from rest_framework import generics
+from rest_framework.response import Response
+from .serializers import CommentarySerializer
+from rest_framework.generics import ListAPIView
 
 
 class CommentaryView(generic.DetailView):
     model = Commentary
     template_name = "commentary/commentary.html"
 
+class CommentaryAPIView(ListAPIView):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer
 
 class CommentaryCreateView(generic.CreateView):
     model = Commentary

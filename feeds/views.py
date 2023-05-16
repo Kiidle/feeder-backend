@@ -6,7 +6,7 @@ from rest_framework import generics, serializers
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from feeds.serializers import FeedSerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework import status
 
 from feeds.models import Feed
@@ -28,23 +28,13 @@ class FeedsAPIView(ListAPIView):
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 
-@api_view(['POST'])
-def feed_api_create(request):
-    feed = FeedSerializer(data=request.data)
-
-    if Feed.objects.filter(**request.data).exists():
-        raise serializers.ValidationError('This data already exists')
-
-    if feed.is_valid():
-        feed.save()
-        return Response(feed.data)
-    else:
-        return Response(status=status.HTTP_404_NOT_FOUND)
-
 class FeedView(generic.DetailView):
     model = Feed
     template_name = "feeds/feed.html"
 
+class FeedAPIView(RetrieveAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = FeedSerializer
 
 class FeedCreateView(generic.CreateView):
     model = Feed
@@ -64,6 +54,11 @@ class FeedCreateView(generic.CreateView):
         messages.error(self.request, error_message)
         return response
 
+class FeedCreateAPIView(CreateAPIView):
+    serializer_class = FeedSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 class FeedUpdateView(generic.UpdateView):
     model = Feed
@@ -82,6 +77,11 @@ class FeedUpdateView(generic.UpdateView):
         context["update"] = True
         return context
 
+class FeedUpdateAPIView(UpdateAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = FeedSerializer
+
+
 def feed_delete(request, pk):
     feed = Feed.objects.get(pk=pk)
 
@@ -90,3 +90,8 @@ def feed_delete(request, pk):
         return redirect("feeds")
 
     return (request, "feeds/delete.html", {"feed": feed})
+
+class FeedDeleteAPIView(DestroyAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = FeedSerializer
+

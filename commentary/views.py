@@ -6,16 +6,22 @@ from feeds.models import Feed
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import CommentarySerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
+
+class CommentariesAPIView(ListAPIView):
+    queryset = Commentary.objects.all()
+    serializer_class = CommentarySerializer
 
 class CommentaryView(generic.DetailView):
     model = Commentary
     template_name = "commentary/commentary.html"
 
+
 class CommentaryAPIView(ListAPIView):
     queryset = Commentary.objects.all()
     serializer_class = CommentarySerializer
+
 
 class CommentaryCreateView(generic.CreateView):
     model = Commentary
@@ -40,6 +46,17 @@ class CommentaryCreateView(generic.CreateView):
         return super().form_valid(form)
 
 
+class CommentaryCreateAPIView(CreateAPIView):
+    serializer_class = CommentarySerializer
+
+    def get_serializer_context(self):
+        context = super().get_serializer_context()
+        context['feed_id'] = self.kwargs['feed_id']  # Update this line
+        return context
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user, feed_id=self.kwargs['feed_id'])
+
 class CommentaryUpdateView(generic.UpdateView):
     model = Commentary
     fields = ["text"]
@@ -53,6 +70,11 @@ class CommentaryUpdateView(generic.UpdateView):
         return super().form_valid(form)
 
 
+class CommentaryUpdateAPIView(UpdateAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = CommentarySerializer
+
+
 def commentary_delete(request, pk):
     commentary = Commentary.objects.get(pk=pk)
 
@@ -62,3 +84,8 @@ def commentary_delete(request, pk):
         return redirect("feed", pk=feed_id)
 
     return (request, "commentary/delete.html", {"commentary": commentary})
+
+
+class CommentaryDeleteAPIView(DestroyAPIView):
+    queryset = Feed.objects.all()
+    serializer_class = CommentarySerializer

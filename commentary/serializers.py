@@ -23,3 +23,8 @@ class CommentarySerializer(serializers.ModelSerializer):
     class Meta:
         model = Commentary
         fields = ('id', 'text', 'published_date', 'author', 'feed')
+
+    def create(self, validated_data):
+        feed_id = self.context['feed_id']
+        validated_data['feed_id'] = feed_id
+        return super().create(validated_data)

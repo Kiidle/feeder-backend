@@ -15,7 +15,7 @@ from django.views import generic
 from rest_framework import generics
 from rest_framework.response import Response
 from .serializers import UserSerializer
-from rest_framework.generics import ListAPIView
+from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
 from authentication.models import Warn
 
@@ -24,9 +24,6 @@ from .forms import SignUpForm
 
 
 User = get_user_model()
-
-
-
 
 def can_verify(user):
     return user.groups.filter(name__in=["moderator", "administrator"]).exists()
@@ -132,6 +129,12 @@ class UserView(generic.DetailView):
     model = User
     template_name = "authentication/user.html"
 
+class UserAPIView(RetrieveAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserAPICreateView(CreateAPIView):
+    serializer_class = UserSerializer
 
 class UserCommentariesView(generic.DetailView):
     model = User
@@ -145,7 +148,6 @@ class UserWarnsView(generic.DetailView):
 
 def redirectURL(request):
     return redirect("feeds")
-
 
 class UserUpdateView(generic.UpdateView):
     model = User
@@ -163,6 +165,9 @@ class UserUpdateView(generic.UpdateView):
         context["update"] = True
         return context
 
+class UserAPIUpdateView(UpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 def user_delete(request, pk):
     user = User.objects.get(pk=pk)
@@ -171,6 +176,10 @@ def user_delete(request, pk):
         user.delete()
         return redirect("feeds")
     return (request, "authentication/user_delete.html", {"user": user})
+
+class UserAPIDeleteView(DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class WarnCreateView(generic.CreateView):

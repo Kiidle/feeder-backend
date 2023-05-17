@@ -1,0 +1,8 @@
+# Ignoriere pycache
+__pycache__
+
+# Ignoriere Datenbank
+db.sqlite3
+
+# Ignoriere idea
+.idea/

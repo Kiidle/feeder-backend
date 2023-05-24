@@ -47,6 +47,12 @@ class Base(Configuration):
         "django.middleware.clickjacking.XFrameOptionsMiddleware",
     ]
 
+    REST_FRAMEWORK = {
+        'DEFAULT_AUTHENTICATION_CLASSES': [
+            'rest_framework.authentication.TokenAuthentication',
+        ],
+    }
+
     ROOT_URLCONF = "project.urls"
 
     # Static files (CSS, JavaScript, Images)

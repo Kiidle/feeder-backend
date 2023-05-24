@@ -13,9 +13,11 @@ from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from .serializers import UserSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
+from rest_framework.authentication import TokenAuthentication
 
 from authentication.models import Warn
 
@@ -122,6 +124,8 @@ class UsersView(generic.ListView):
     template_name = "authentication/users.html"
 
 class UsersAPIView(ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -130,10 +134,14 @@ class UserView(generic.DetailView):
     template_name = "authentication/user.html"
 
 class UserAPIView(RetrieveAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
 class UserAPICreateView(CreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
 
 class UserCommentariesView(generic.DetailView):
@@ -166,6 +174,8 @@ class UserUpdateView(generic.UpdateView):
         return context
 
 class UserAPIUpdateView(UpdateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -178,6 +188,8 @@ def user_delete(request, pk):
     return (request, "authentication/user_delete.html", {"user": user})
 
 class UserAPIDeleteView(DestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
 

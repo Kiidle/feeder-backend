@@ -3,7 +3,9 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from rest_framework import generics, serializers
+from rest_framework.authentication import TokenAuthentication
 from rest_framework.decorators import api_view
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from feeds.serializers import FeedSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
@@ -25,6 +27,8 @@ class FeedsView(generic.ListView):
         return context
 
 class FeedsAPIView(ListAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 
@@ -33,6 +37,8 @@ class FeedView(generic.DetailView):
     template_name = "feeds/feed.html"
 
 class FeedAPIView(RetrieveAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 
@@ -55,6 +61,8 @@ class FeedCreateView(generic.CreateView):
         return response
 
 class FeedCreateAPIView(CreateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     serializer_class = FeedSerializer
 
     def perform_create(self, serializer):
@@ -78,6 +86,8 @@ class FeedUpdateView(generic.UpdateView):
         return context
 
 class FeedUpdateAPIView(UpdateAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 
@@ -92,6 +102,8 @@ def feed_delete(request, pk):
     return (request, "feeds/delete.html", {"feed": feed})
 
 class FeedDeleteAPIView(DestroyAPIView):
+    authentication_classes = [TokenAuthentication]
+    permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
 

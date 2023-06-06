@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os.path
 from pathlib import Path
-from configurations import Configuration
+from configurations import Configuration, values
 
 
 class Base(Configuration):
@@ -20,6 +20,8 @@ class Base(Configuration):
 
     # Quick-start development settings - unsuitable for production
     # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
+
+    ALLOWED_HOSTS = values.ListValue([])
 
     # Application definition
 
@@ -160,6 +162,7 @@ class Production(Base):
             'PORT': '5432',
         }
     }
+
 
 class Testing(Development):
     pass

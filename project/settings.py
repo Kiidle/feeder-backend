@@ -22,6 +22,7 @@ class Base(Configuration):
     # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
     ALLOWED_HOSTS = values.ListValue([])
+    SECRET_KEY = values.Value("")
 
     # Application definition
 

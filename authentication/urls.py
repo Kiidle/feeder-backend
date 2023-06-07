@@ -11,19 +11,12 @@ from .views import UserView
 from .views import UserWarnsView
 from .views import verify_user
 from .views import WarnCreateView
-from .views import UsersAPIView
-from .views import UserAPIView
-from .views import UserAPICreateView
-from .views import UserAPIUpdateView
-from .views import UserAPIDeleteView
-
+from .views import UsersViewSet
+from .views import UserViewSet
 
 urlpatterns = [
-    path("api/users", UsersAPIView.as_view(), name="users_api"),
-    path("api/users/<int:pk>", UserAPIView.as_view(), name="user_api"),
-    path("api/users/create", UserAPICreateView.as_view(), name="user_api_create"),
-    path("api/users/<int:pk>/update", UserAPIUpdateView.as_view(), name="user_api_update"),
-    path("api/users/<int:pk>/delete", UserAPIDeleteView.as_view(), name="user_api_delete"),
+    path("api/users", UsersViewSet.as_view({'get': 'list', 'post': 'create'}), name="users_api"),
+    path("api/users/<int:pk>", UserViewSet.as_view({'get': 'retrieve', 'put': 'update', 'delete': 'destroy'}), name="user_api"),
     path("signup/", SignUpView.as_view(), name="signup"),
     path("logout/", views.custom_logout, name="logout"),
     path("login/", views.sign_in, name="login"),

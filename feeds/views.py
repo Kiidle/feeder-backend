@@ -3,10 +3,12 @@ from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
 from rest_framework import generics, serializers
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
 from feeds.serializers import FeedSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework import status
@@ -26,18 +28,21 @@ class FeedsView(generic.ListView):
 
         return context
 
-class FeedsAPIView(ListAPIView):
-    authentication_classes = [TokenAuthentication]
+class FeedsViewSet(ModelViewSet):
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(author=self.request.user)
 
 class FeedView(generic.DetailView):
     model = Feed
     template_name = "feeds/feed.html"
 
-class FeedAPIView(RetrieveAPIView):
-    authentication_classes = [TokenAuthentication]
+class FeedViewSet(ModelViewSet):
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
@@ -61,7 +66,7 @@ class FeedCreateView(generic.CreateView):
         return response
 
 class FeedCreateAPIView(CreateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = FeedSerializer
 
@@ -85,13 +90,6 @@ class FeedUpdateView(generic.UpdateView):
         context["update"] = True
         return context
 
-class FeedUpdateAPIView(UpdateAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = Feed.objects.all()
-    serializer_class = FeedSerializer
-
-
 def feed_delete(request, pk):
     feed = Feed.objects.get(pk=pk)
 
@@ -100,10 +98,3 @@ def feed_delete(request, pk):
         return redirect("feeds")
 
     return (request, "feeds/delete.html", {"feed": feed})
-
-class FeedDeleteAPIView(DestroyAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = Feed.objects.all()
-    serializer_class = FeedSerializer
-

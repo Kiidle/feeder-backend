@@ -1,8 +1,9 @@
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from django.views import generic
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 from rest_framework.permissions import IsAuthenticated
+from rest_framework.viewsets import ModelViewSet
 
 from commentary.models import Commentary
 from feeds.models import Feed
@@ -13,7 +14,7 @@ from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView,
 
 
 class CommentariesAPIView(ListAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Commentary.objects.all()
     serializer_class = CommentarySerializer
@@ -23,12 +24,11 @@ class CommentaryView(generic.DetailView):
     template_name = "commentary/commentary.html"
 
 
-class CommentaryAPIView(ListAPIView):
-    authentication_classes = [TokenAuthentication]
+class CommentaryViewSet(ModelViewSet):
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Commentary.objects.all()
     serializer_class = CommentarySerializer
-
 
 class CommentaryCreateView(generic.CreateView):
     model = Commentary
@@ -54,7 +54,7 @@ class CommentaryCreateView(generic.CreateView):
 
 
 class CommentaryCreateAPIView(CreateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     serializer_class = CommentarySerializer
 
@@ -80,7 +80,7 @@ class CommentaryUpdateView(generic.UpdateView):
 
 
 class CommentaryUpdateAPIView(UpdateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = CommentarySerializer
@@ -98,7 +98,7 @@ def commentary_delete(request, pk):
 
 
 class CommentaryDeleteAPIView(DestroyAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = Feed.objects.all()
     serializer_class = CommentarySerializer

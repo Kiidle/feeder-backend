@@ -12,18 +12,22 @@ from django.shortcuts import redirect
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
-from rest_framework import generics
+from rest_framework import generics, status
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
+from rest_framework.viewsets import ModelViewSet
+
 from .serializers import UserSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
-from rest_framework.authentication import TokenAuthentication
+from rest_framework.authentication import SessionAuthentication
 
 from authentication.models import Warn
 
 from .forms import LoginForm
 from .forms import SignUpForm
 
+from rest_framework.authtoken.models import Token
+from rest_framework.authtoken.views import ObtainAuthToken
 
 User = get_user_model()
 
@@ -123,8 +127,8 @@ class UsersView(generic.ListView):
     ]
     template_name = "authentication/users.html"
 
-class UsersAPIView(ListAPIView):
-    authentication_classes = [TokenAuthentication]
+class UsersViewSet(ModelViewSet):
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -133,15 +137,10 @@ class UserView(generic.DetailView):
     model = User
     template_name = "authentication/user.html"
 
-class UserAPIView(RetrieveAPIView):
-    authentication_classes = [TokenAuthentication]
+class UserViewSet(ModelViewSet):
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
-    serializer_class = UserSerializer
-
-class UserAPICreateView(CreateAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
 
 class UserCommentariesView(generic.DetailView):
@@ -174,7 +173,7 @@ class UserUpdateView(generic.UpdateView):
         return context
 
 class UserAPIUpdateView(UpdateAPIView):
-    authentication_classes = [TokenAuthentication]
+    authentication_classes = [SessionAuthentication]
     permission_classes = [IsAuthenticated]
     queryset = User.objects.all()
     serializer_class = UserSerializer
@@ -186,12 +185,6 @@ def user_delete(request, pk):
         user.delete()
         return redirect("feeds")
     return (request, "authentication/user_delete.html", {"user": user})
-
-class UserAPIDeleteView(DestroyAPIView):
-    authentication_classes = [TokenAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = User.objects.all()
-    serializer_class = UserSerializer
 
 
 class WarnCreateView(generic.CreateView):

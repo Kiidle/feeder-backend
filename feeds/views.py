@@ -8,7 +8,10 @@ from rest_framework.decorators import api_view
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
+from rest_framework.exceptions import PermissionDenied
 
+from feeds.permissions import CanViewFeedPermission, CanAddFeedPermission, CanChangeFeedPermission, \
+    CanDeleteFeedPermission
 from feeds.serializers import FeedSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework import status
@@ -30,11 +33,14 @@ class FeedsView(generic.ListView):
 
 class FeedsViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanViewFeedPermission]  # Only users with view_feed permission can view feeds
+
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
-
     def perform_create(self, serializer):
+        if not self.request.user.has_perm('feeds.add_feed'):
+            raise PermissionDenied("You do not have permission to add a new feed.")
+
         serializer.save(author=self.request.user)
 
 class FeedView(generic.DetailView):
@@ -43,9 +49,19 @@ class FeedView(generic.DetailView):
 
 class FeedViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanViewFeedPermission]
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
+
+    def get_permissions(self):
+        if self.action == 'create':
+            return [CanAddFeedPermission()]
+        elif self.action == 'update':
+            return [CanChangeFeedPermission()]
+        elif self.action == 'destroy':
+            return [CanDeleteFeedPermission()]
+
+        return super().get_permissions()
 
 class FeedCreateView(generic.CreateView):
     model = Feed

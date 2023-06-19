@@ -9,6 +9,9 @@ from commentary.models import Commentary
 from feeds.models import Feed
 from rest_framework import generics
 from rest_framework.response import Response
+
+from .permissions import CanAddCommentaryPermission, CanChangeCommentaryPermission, CanDeleteCommentaryPermission, \
+    CanViewCommentaryPermission
 from .serializers import CommentarySerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 
@@ -26,9 +29,19 @@ class CommentaryView(generic.DetailView):
 
 class CommentaryViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanViewCommentaryPermission]
     queryset = Commentary.objects.all()
     serializer_class = CommentarySerializer
+
+    def get_permissions(self):
+        if self.action == 'create':
+            return [CanAddCommentaryPermission()]
+        elif self.action == 'update':
+            return [CanChangeCommentaryPermission()]
+        elif self.action == 'destroy':
+            return [CanDeleteCommentaryPermission()]
+
+        return super().get_permissions()
 
 class CommentaryCreateView(generic.CreateView):
     model = Commentary
@@ -55,7 +68,7 @@ class CommentaryCreateView(generic.CreateView):
 
 class CommentaryCreateAPIView(CreateAPIView):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanAddCommentaryPermission]
     serializer_class = CommentarySerializer
 
     def get_serializer_context(self):
@@ -78,14 +91,6 @@ class CommentaryUpdateView(generic.UpdateView):
         form.instance.author = self.request.user
         return super().form_valid(form)
 
-
-class CommentaryUpdateAPIView(UpdateAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = Feed.objects.all()
-    serializer_class = CommentarySerializer
-
-
 def commentary_delete(request, pk):
     commentary = Commentary.objects.get(pk=pk)
 
@@ -95,10 +100,3 @@ def commentary_delete(request, pk):
         return redirect("feed", pk=feed_id)
 
     return (request, "commentary/delete.html", {"commentary": commentary})
-
-
-class CommentaryDeleteAPIView(DestroyAPIView):
-    authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
-    queryset = Feed.objects.all()
-    serializer_class = CommentarySerializer

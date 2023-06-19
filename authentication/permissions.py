@@ -1,5 +1,6 @@
 from django.contrib.auth.models import Group
 from django.contrib.auth.models import Permission
+from rest_framework.permissions import BasePermission
 
 
 def create_verify_permission_and_group():
@@ -30,3 +31,20 @@ def create_assignmod_permission_and_group():
 
     # add the permission to the moderator group
     group.permissions.add(permission)
+
+
+class CanViewUserPermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('authentication.view_user')
+
+class CanAddUserPermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('authentication.add_user')
+
+class CanChangeUserPermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('authentication.change_user')
+
+class CanDeleteUserPermission(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.has_perm('authentication.delete_user')

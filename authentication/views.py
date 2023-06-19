@@ -17,6 +17,7 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet
 
+from .permissions import CanViewUserPermission, CanAddUserPermission, CanChangeUserPermission, CanDeleteUserPermission
 from .serializers import UserSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, CreateAPIView, UpdateAPIView, DestroyAPIView
 from rest_framework.authentication import SessionAuthentication
@@ -129,9 +130,15 @@ class UsersView(generic.ListView):
 
 class UsersViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanViewUserPermission]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+    
+    def get_permissions(self):
+        if self.action == 'create':
+            return [CanAddUserPermission()]
+
+        return super().get_permissions()
 
 class UserView(generic.DetailView):
     model = User
@@ -139,9 +146,19 @@ class UserView(generic.DetailView):
 
 class UserViewSet(ModelViewSet):
     authentication_classes = [SessionAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [CanViewUserPermission]
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+    def get_permissions(self):
+        if self.action == 'create':
+            return [CanAddUserPermission()]
+        elif self.action == 'update':
+            return [CanChangeUserPermission()]
+        elif self.action == 'destroy':
+            return [CanDeleteUserPermission()]
+
+        return super().get_permissions()
 
 class UserCommentariesView(generic.DetailView):
     model = User

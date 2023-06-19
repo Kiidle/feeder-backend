@@ -37,11 +37,11 @@ class FeedsViewSet(ModelViewSet):
 
     queryset = Feed.objects.all()
     serializer_class = FeedSerializer
-    def perform_create(self, serializer):
-        if not self.request.user.has_perm('feeds.add_feed'):
-            raise PermissionDenied("You do not have permission to add a new feed.")
+    def get_permissions(self):
+        if self.action == 'create':
+            return [CanAddFeedPermission()]
 
-        serializer.save(author=self.request.user)
+        return super().get_permissions()
 
 class FeedView(generic.DetailView):
     model = Feed
